@@ -23,11 +23,7 @@ func _ready() -> void:
 	
 	var dummy_data = [# TODO: find real cost
 		{ "type": null, "icon": null, "cost": 0, "scene": null }, # avoid overstimulating holograms
-		
-		{ "type" : Enums.DamageType.NORMAL, "icon" : ICON, "cost" : 1, "scene": TOWER_NORMAL},
-		{ "type" : Enums.DamageType.FIRE, "icon" : ICON, "cost" : 1, "scene": TOWER_FIRE},
-		{ "type" : Enums.DamageType.PLANT, "icon" : ICON, "cost" : 1, "scene": TOWER_PLANT},
-		{ "type" : Enums.DamageType.ELEC, "icon" : ICON, "cost" : 1, "scene": TOWER_ELEC}
+		# A3: 
 	]
 	
 	setup_towers(dummy_data)

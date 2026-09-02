@@ -4,9 +4,9 @@ class_name Tower_Def
 
 # polyrinthe stuff
 var begin_id: int = 0
-@export var size: int = 7 # Default
+@export var size: int = 7 # Default # A2: max 10
 @export var polyrinthe: Polyrinthe = Polyrinthe.new()
-@export var difficulty: int = 0 # Default [-2; 2]
+@export var difficulty: int = 0 # Default [-2; 2] # A2: min -2, max 2
 
 const ICE = preload("res://materials/ice.tres")
 const ENV_VALUE = 1
@@ -40,12 +40,7 @@ var xr_interface: XRInterface
 
 # Tower def stuffs
 var spawn_point: Vector3 = Vector3(0, 30, 0)
-const TOWER_BASE = preload("res://scenes/tower_def/tower_base.tscn")
-
-const TOWER_NORMAL = preload("res://scenes/tower_def/tower_normal.tscn")
-const TOWER_FIRE = preload("res://scenes/tower_def/tower_fire.tscn")
-const TOWER_ELEC = preload("res://scenes/tower_def/tower_elec.tscn")
-const TOWER_PLANT = preload("res://scenes/tower_def/tower_plant.tscn")
+ # A3: 
 
 # wave things
 const WAVE_SPAWNER = preload("res://scenes/fight/wave_spawner.tscn")
@@ -53,9 +48,9 @@ const WAVE_BUTTON = preload("res://scenes/tower_def/wave_button.tscn")
 var wave_button: WaveButton
 var current_wave: int = 0
 var is_wave_running: bool = false
-var time_between_waves: float = 20.0
+var time_between_waves: float = 20.0 # A2: 
 var wave_timer: float = 0.0
-var wave_configs: Array[Dictionary] = [
+var wave_configs: Array[Dictionary] = [ # A2: 
 	{"count": 10, "lvl": 1, "type": 1, "spawn_rate": 5},
 	{"count": 15, "lvl": 2, "type": 1, "spawn_rate": 5},
 	{"count": 25, "lvl": 3, "type": 1, "spawn_rate": 6},
@@ -190,7 +185,7 @@ func _generate_maze() -> void:
 	
 	if not FileAccess.file_exists("user://" + player.get_player_name() + "/maze.save"):
 		push_warning("file:'" + player.get_player_name() + "/maze.save' not found, new generation created with size: " + str(size))
-		polyrinthe.algo = polyrinthe.GENERATION_ALGORITHME.DFS_FLAT
+		polyrinthe.algo = polyrinthe.GENERATION_ALGORITHME.DFS_LBL_ALT_6 # A2: change algo
 		polyrinthe.begin_id = begin_id
 		polyrinthe.generate(size, "", [-1, -1, 1])
 		save_meta()
@@ -355,7 +350,7 @@ func _get_main_path(maze: Polyrinthe) -> Array[int]:
 		visited.append(curr_id)
 		path.append(curr_id)
 	
-	return path
+	return [] # A3:
 
 func _initialise_player():
 	if not FileAccess.file_exists("user://" + player.get_player_name() + "/meta.save"):
@@ -432,7 +427,7 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 	#wave_spawner.id = spawner_id
 	wave_spawner.position = maze.maze[maze.begin_id].position + Vector3(-3, -(2.5 * maze.room_scale), 5 * maze.room_scale - 2) + Vector3(0, path_height, 0)
 	#spawner.initialise_mobs_list(maze.seed_human + "_spawner_" + str(spawner_id), mob_id_to_avoid)
-	wave_spawner.wave_finished.connect(_on_wave_finished)
+	# A4: connect signal wave end
 	wave_spawner.wave_updated.connect(_on_wave_updated)
 	
 	portal_position = maze.maze[maze.begin_id].position + Vector3(-3, -(2.5 * maze.room_scale), 5 * maze.room_scale - 2)
@@ -442,10 +437,7 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 	spawn_portal.rotate(Vector3.UP, -45)
 	spawn_portal.scale = Vector3(maze.room_scale, maze.room_scale, maze.room_scale) * 2
 	
-	wave_button = WAVE_BUTTON.instantiate()
-	add_child(wave_button)
-	wave_button.position = spawn_portal.position + Vector3(-1, -1, -3)
-	wave_button.start_wave_triggered.connect(force_start_next_wave)
+	# A4: wave button
 	
 	castle_position = maze.maze[path_to_castle.back()].position + Vector3(0, path_height, 0)
 	
@@ -462,22 +454,14 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 		#sphere_path.get_child(0).mesh.material.albedo_color = Color(1, 0.8, 0.1, 1)
 		#sphere_path.position = maze.maze[path_id].global_position + Vector3(0, 5, 0)
 	
-	var available_slots: Array[TowerSlot] = []
+	var available_slots: Array[TowerSlot] = [] # A3: 
 	
-	var rooms: int = maze.cubeGraph.getNbrRoom()
-	for tmp_id in range(rooms):
-		if Polyrinthe.is_id_on_first_floor(size, tmp_id) and tmp_id not in path_to_castle:
-			#var sphere_path_dead_end = SPHERE.instantiate()
-			#add_child(sphere_path_dead_end)
-			#sphere_path_dead_end.get_child(0).mesh.material.albedo_color = Color(0, 0.8, 0.5, 1)
-			#sphere_path_dead_end.position = maze.maze[tmp_id].global_position + Vector3(0, 10, 0)
-			
-			var tower_base = TOWER_BASE.instantiate()
-			add_child(tower_base)
-			tower_base.scale = Vector3(maze.room_scale, maze.room_scale, maze.room_scale) * 1.05
-			tower_base.position = maze.maze[tmp_id].global_position
-			
-			available_slots.append(tower_base)
+	# A3: 
+	#var sphere_path_dead_end = SPHERE.instantiate()
+	#add_child(sphere_path_dead_end)
+	#sphere_path_dead_end.get_child(0).mesh.material.albedo_color = Color(0, 0.8, 0.5, 1)
+	#sphere_path_dead_end.position = maze.maze[tmp_id].global_position + Vector3(0, 10, 0)
+	# A3: 
 	
 	_place_random_towers(available_slots, 5)
 	
@@ -550,11 +534,7 @@ func _place_random_towers(slots: Array[TowerSlot], amount: int) -> void:
 	shuffled_slots.shuffle()
 	
 	for i in range(min(amount, shuffled_slots.size())):
-		#var tower = TOWER_NORMAL.instantiate() as Tower
-		#var tower = TOWER_FIRE.instantiate() as Tower
-		#var tower = TOWER_ELEC.instantiate() as Tower
-		var tower = TOWER_PLANT.instantiate() as Tower
-		shuffled_slots[i].build_tower(tower)
+		pass # A3: 
 
 func _process(delta: float) -> void:
 	#_handle_tower_placement()
@@ -884,7 +864,4 @@ func _apply_material_override(node: Node, mat: Material) -> void:
 	for child in node.get_children():
 		_apply_material_override(child, mat)
 
-
-func _on_respawn_zone_area_entered(_area: Area3D) -> void:
-	player.position = spawn_point
-	
+# A2: 

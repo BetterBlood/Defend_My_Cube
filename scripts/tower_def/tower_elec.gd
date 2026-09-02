@@ -6,17 +6,11 @@ const STUN_EFFECT = preload("res://scenes/fight/statusEffects/speed_effect.tscn"
 var stun_chances: Array[float] = [0.10, 0.20, 0.30, 0.50, 0.75]
 
 func _ready() -> void:
-	attack_range = 40
+	# A3: ELEC
 	super._ready()
 
 func _custom_ready() -> void:
-	base_damage = 5.0
-	attack_cooldown = 7.0
-	effect_value = 0.0
-	
-	effect_area_range_transmission = 0.0 # TODO: for the moment, mayby upgrad with lvls
-	
-	effect = STUN_EFFECT
+	pass # A3: config
 
 func _perform_attack(_target: Node3D, current_damage: float) -> void:
 	var best_target: Node3D = null
@@ -27,18 +21,15 @@ func _perform_attack(_target: Node3D, current_damage: float) -> void:
 			var health_comp = enemy.get_health_component()
 			var hp_ratio = float(health_comp.health) / float(health_comp.get_max_health())
 			if hp_ratio > highest_hp_ratio:
-				highest_hp_ratio = hp_ratio
-				best_target = enemy
+				pass # A3: found higher hp
 	
 	if not is_instance_valid(best_target):
 		return
 	
-	best_target.take_damage(current_damage, Enums.DamageType.ELEC, 0.0)
+	# A3: take_damage
+	# A3: stun
 	
-	if randf() <= stun_chances[clamp(level - 1, 0, 4)]:
-		_apply_stun(best_target)
-	
-	_draw_lightning(attack_source.global_position, best_target.global_position)
+	# A3: draw lightning
 
 
 func _apply_stun(target: Node3D) -> void:
@@ -85,7 +76,7 @@ func _draw_lightning(start_pos: Vector3, end_pos: Vector3) -> void:
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mesh_instance.material_override = mat
 	
-	get_tree().current_scene.add_child(mesh_instance)
+	# A3: add_child
 	
 	mesh_instance.global_position = start_pos.lerp(end_pos, 0.5)
 	
@@ -100,9 +91,7 @@ func _draw_lightning(start_pos: Vector3, end_pos: Vector3) -> void:
 		var angle = up_vector.angle_to(direction)
 		mesh_instance.basis = Basis(axis, angle)
 	
-	var tween = get_tree().create_tween()
-	tween.tween_property(mat, "albedo_color:a", 0.0, 0.2)
-	tween.tween_callback(mesh_instance.queue_free)
+	# A3: tween
 	
 	
 	

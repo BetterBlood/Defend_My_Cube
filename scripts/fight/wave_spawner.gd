@@ -43,7 +43,7 @@ func start_wave(lvl: int, mob_count: int, aggro_player: bool = false, wave_nbr: 
 		var new_mob = possible_mobs[mob_type].instantiate()
 		
 		new_mob.id = new_id
-		new_mob.is_dead.connect(_on_mob_death)
+		# A4: connect
 		current_mobs.append(new_mob)
 		
 		new_mob.set_mob_data(human_seed, (wave_nbr/(wave_max as float))*5 - 3, i/(mob_count as float))
@@ -70,8 +70,8 @@ func _check_wave_end() -> void:
 	for mob_per_wave in total_mobs_per_wave:
 		total_mobs += mob_per_wave
 	if mobs_processed >= total_mobs:
-		wave_finished.emit()
-	wave_updated.emit(mobs_processed, total_mobs, current_wave)
+		pass # A4: signal ?
+	# A4: signals ?
 
 func _disable_player_detection(mob: Enemy) -> void:
 	for child in mob.get_children():
@@ -114,8 +114,8 @@ func _on_mob_death(mob_id: int) -> void:
 		
 	#print("_on_mob_death::_mob_id: ", mob_id)
 	mob_dead.append(mob_id)
-	mobs_processed += 1
-	_check_wave_end()
+	# A4: process
+	# A4: check wave
 
 func _process(_delta: float) -> void:
 	# override parent one, DO NOT REMOVE !

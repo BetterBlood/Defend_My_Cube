@@ -14,6 +14,11 @@ func _process(_delta):
 	_bridge_action("down", "down")
 	_bridge_action("pause", "pause")
 	_bridge_action("swap_rune", "swap_rune")
+	_bridge_action("tower_right", "tower_right")
+	_bridge_action("tower_left", "tower_left")
+	_bridge_action("lvl_up", "lvl_up")
+	_bridge_action("lvl_down", "lvl_down")
+	_bridge_action("demolition_toggle", "demolition_toggle")
 	# A3: 
 
 

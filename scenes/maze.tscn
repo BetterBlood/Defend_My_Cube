@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cla26sao8dhjw"]
+
+[ext_resource type="Script" uid="uid://d0qm8855yl4cu" path="res://scripts/maze.gd" id="1_ol5qi"]
+[ext_resource type="PackedScene" uid="uid://y1yw5naea0tu" path="res://scenes/characters/player.tscn" id="2_fgl6e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgl6e"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_l3biw"]
+sky_material = SubResource("ProceduralSkyMaterial_fgl6e")
+
+[sub_resource type="Environment" id="Environment_vqf1n"]
+background_mode = 2
+sky = SubResource("Sky_l3biw")
+tonemap_mode = 2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_fgl6e"]
+agent_height = 2.0
+
+[node name="Maze" type="Node3D" unique_id=213248738]
+script = ExtResource("1_ol5qi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=904037535]
+environment = SubResource("Environment_vqf1n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=93123434]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=34540758 instance=ExtResource("2_fgl6e")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=55922130]
+navigation_mesh = SubResource("NavigationMesh_fgl6e")

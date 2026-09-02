@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpwwx574q136y"]
+
+[ext_resource type="Script" uid="uid://cnqrhsg88wbt5" path="res://scripts/fight/projectiles/normal_projectile.gd" id="1_plfcp"]
+[ext_resource type="Material" uid="uid://b4qiy7auc0pej" path="res://materials/projectiles/normal_projectile.tres" id="2_h4xya"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_plfcp"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_plfcp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_d2mg7"]
+material = ExtResource("2_h4xya")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1rtkj"]
+
+[node name="NormalProjectile" type="RigidBody3D"]
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_plfcp")
+gravity_scale = 0.1
+script = ExtResource("1_plfcp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_plfcp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_d2mg7")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_1rtkj")
+debug_color = Color(0.733333, 0.462745, 0.227451, 0.419608)
+
+[node name="TimeToLive" type="Timer" parent="."]

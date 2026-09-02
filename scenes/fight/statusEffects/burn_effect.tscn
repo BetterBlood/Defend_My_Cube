@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://odjtps1eo4ei"]
+
+[ext_resource type="Script" uid="uid://dayanjp2elw6j" path="res://scripts/fight/statusEffects/burn_effect.gd" id="1_vy6bo"]
+
+[node name="BurnEffect" type="Node"]
+script = ExtResource("1_vy6bo")

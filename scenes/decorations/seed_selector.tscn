@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgkf7mglet062"]
+
+[ext_resource type="Script" uid="uid://di7rtbk8wt81p" path="res://scripts/decorations/seed_selector.gd" id="1_g7qss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2f5o"]
+albedo_color = Color(0.368506, 0.513769, 0.788201, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hi43u"]
+material = SubResource("StandardMaterial3D_i2f5o")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g7qss"]
+
+[node name="SeedSelector" type="Node3D"]
+script = ExtResource("1_g7qss")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.5)
+billboard = 1
+text = "Seed"
+
+[node name="Seed" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+billboard = 1
+text = "Default
+(should not be display like this in game)"
+
+[node name="Randomize" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Randomize"]
+mesh = SubResource("SphereMesh_hi43u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Randomize"]
+shape = SubResource("SphereShape3D_g7qss")
+
+[node name="Label3D" type="Label3D" parent="Randomize"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+billboard = 1
+text = "Randomize"
+
+[connection signal="area_entered" from="Randomize" to="." method="_on_randomize_area_entered"]

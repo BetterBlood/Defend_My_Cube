@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://dvkq4hwixk2m8"]
+
+[ext_resource type="Script" uid="uid://u13n4bbp4bj7" path="res://scripts/decorations/torch.gd" id="1_g1goi"]
+[ext_resource type="Material" uid="uid://dc4b75pxjdnu" path="res://materials/brown_wood.tres" id="2_2bcst"]
+[ext_resource type="Material" uid="uid://hb1quxj4nkq2" path="res://materials/coal.tres" id="3_kopxh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n0okf"]
+material = ExtResource("2_2bcst")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r2q4i"]
+material = ExtResource("3_kopxh")
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_g1goi"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 78.6517), 0.0, 0.0, 0, 0, Vector2(0.528846, 200), 0.0, 0.0, 0, 0, Vector2(1, 6.74158), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2bcst"]
+curve = SubResource("Curve_g1goi")
+
+[sub_resource type="Curve" id="Curve_pjnwb"]
+_data = [Vector2(0, 0.359551), 0.0, 0.0, 0, 0, Vector2(0.605769, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cli3l"]
+curve = SubResource("Curve_pjnwb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ipwh"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 7.5
+linear_accel_curve = SubResource("CurveTexture_2bcst")
+scale_min = 0.3
+scale_curve = SubResource("CurveTexture_cli3l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1goi"]
+albedo_color = Color(0.577821, 0.304129, 3.85046e-07, 1)
+emission_enabled = true
+emission = Color(0.787377, 0.426414, 0, 1)
+emission_energy_multiplier = 3.0
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4527t"]
+material = SubResource("StandardMaterial3D_g1goi")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fgvbs"]
+radius = 0.2
+
+[node name="Torch" type="StaticBody3D"]
+script = ExtResource("1_g1goi")
+
+[node name="handle" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_n0okf")
+
+[node name="top" type="MeshInstance3D" parent="handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.246632, 0)
+mesh = SubResource("CylinderMesh_r2q4i")
+
+[node name="Fire" type="GPUParticles3D" parent="handle/top"]
+emitting = false
+amount_ratio = 0.5
+lifetime = 0.5
+explosiveness = 0.15
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_5ipwh")
+draw_pass_1 = SubResource("BoxMesh_4527t")
+
+[node name="Area3D" type="Area3D" parent="handle/top"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="handle/top/Area3D"]
+shape = SubResource("SphereShape3D_fgvbs")
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.402561, 0)
+visible = false
+light_color = Color(0.883495, 0.475407, 2.69532e-06, 1)
+light_energy = 2.0
+light_specular = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 15.0
+
+[connection signal="finished" from="handle/top/Fire" to="." method="_on_fire_finished"]
+[connection signal="area_entered" from="handle/top/Area3D" to="." method="_on_area_3d_area_entered"]

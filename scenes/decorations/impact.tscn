@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://kpvo60hvmh8v"]
+
+[ext_resource type="Shader" uid="uid://t2oaig35frix" path="res://scenes/movement/impact.tres" id="1_d3a0y"]
+[ext_resource type="Texture2D" uid="uid://cj1jwm5o5sx18" path="res://texture/sparke.png" id="2_fm8gb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_npdp2"]
+render_priority = 0
+shader = ExtResource("1_d3a0y")
+shader_parameter/Texture2DParameter = ExtResource("2_fm8gb")
+
+[sub_resource type="Curve" id="Curve_ak8sj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.177596, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.81323), 0.0, 0.0, 0, 0, Vector2(0.762295, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_ed3hk"]
+curve = SubResource("Curve_ak8sj")
+
+[sub_resource type="Gradient" id="Gradient_w12nq"]
+colors = PackedColorArray(1, 0.5, 0.2, 1, 20, 0.3, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_42r6j"]
+gradient = SubResource("Gradient_w12nq")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_rb0yp"]
+_data = [Vector2(0, 0.797665), 0.0, 0.0, 0, 0, Vector2(0.379781, 1), 0.0, 0.0, 0, 0, Vector2(0.631148, 0.439689), -2.84825, -2.84825, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_c5j2c"]
+curve = SubResource("Curve_rb0yp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwm6i"]
+angle_min = -90.0
+angle_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.3
+scale_curve = SubResource("CurveTexture_c5j2c")
+color_ramp = SubResource("GradientTexture1D_42r6j")
+alpha_curve = SubResource("CurveTexture_ed3hk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_shd3u"]
+
+[node name="Impact" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_npdp2")
+emitting = false
+amount = 2
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_pwm6i")
+draw_pass_1 = SubResource("QuadMesh_shd3u")

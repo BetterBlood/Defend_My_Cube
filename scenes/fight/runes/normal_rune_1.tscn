@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbwf4crn1ieol"]
+
+[ext_resource type="Script" uid="uid://djl2a2f8c2iqp" path="res://scripts/fight/runes/normal_rune_1.gd" id="1_dbysc"]
+
+[node name="NormalRune1" type="Node3D"]
+script = ExtResource("1_dbysc")

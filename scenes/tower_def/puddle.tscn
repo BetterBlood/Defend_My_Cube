@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b0vfqlomrvv7t"]
+
+[ext_resource type="Script" uid="uid://dkriksjs3ickq" path="res://scripts/tower_def/puddle.gd" id="1_evlge"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ecv6e"]
+height = 0.5
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evlge"]
+albedo_color = Color(0.031335976, 0.28045338, 0.09694681, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xp2j1"]
+material = SubResource("StandardMaterial3D_evlge")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+
+[node name="Area3D" type="Area3D" unique_id=8807692]
+script = ExtResource("1_evlge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=434532717]
+shape = SubResource("CylinderShape3D_ecv6e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1553664177]
+mesh = SubResource("CylinderMesh_xp2j1")
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=1966050099]
+
+[node name="TickTimer" type="Timer" parent="." unique_id=1411042392]

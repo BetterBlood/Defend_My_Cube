@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://cqqymx3bvgi7h"]
+
+[ext_resource type="Script" uid="uid://cwuigrqqymh4q" path="res://scripts/tower_def/tower_fire.gd" id="1_xdeaf"]
+[ext_resource type="Material" uid="uid://cv36it2g4xybb" path="res://materials/tower_def/fire_flame.tres" id="2_mhno6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdeaf"]
+albedo_color = Color(1, 0.43137255, 0.14901961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y4655"]
+material = SubResource("StandardMaterial3D_xdeaf")
+height = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4ngi6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xdeaf"]
+points = PackedVector3Array(0, 0, 0, 7, -5, -20, -7, -5, -20, -7, 5, -20, 7, 5, -20)
+
+[sub_resource type="Curve" id="Curve_34pum"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0.0034903996, 0.2884035), 0.0, 0.0, 0, 0, Vector2(0.4746946, 2.7356927), 0.0, 0.0, 0, 0, Vector2(1, 1.3945783), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bma7o"]
+curve = SubResource("Curve_34pum")
+
+[sub_resource type="Curve" id="Curve_23bf6"]
+_data = [Vector2(0, 0.4954229), 0.0, 0.0, 0, 0, Vector2(0.21938774, 0.6985231), 0.0, 0.0, 0, 0, Vector2(0.46938774, 0.43512756), 0.0, 0.0, 0, 0, Vector2(0.88265306, 0.8445014), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_ibytc"]
+curve = SubResource("Curve_23bf6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g65y5"]
+lifetime_randomness = 0.1
+inherit_velocity_ratio = 0.728
+direction = Vector3(0, 0, -1)
+spread = 15.0
+initial_velocity_min = 20.0
+initial_velocity_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_bma7o")
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_ibytc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ilqsc"]
+material = ExtResource("2_mhno6")
+size = Vector2(2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xdeaf"]
+material = SubResource("StandardMaterial3D_xdeaf")
+top_radius = 3.0
+bottom_radius = 3.0
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mhno6"]
+material = SubResource("StandardMaterial3D_xdeaf")
+top_radius = 2.5
+bottom_radius = 2.5
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bma7o"]
+material = SubResource("StandardMaterial3D_xdeaf")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ilqsc"]
+material = SubResource("StandardMaterial3D_xdeaf")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nrgch"]
+material = SubResource("StandardMaterial3D_xdeaf")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+
+[node name="Tower_Fire" type="Node3D" unique_id=1056222403]
+script = ExtResource("1_xdeaf")
+
+[node name="AttackSource" type="Marker3D" parent="." unique_id=1283885496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5479317, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=790507175]
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=348642161]
+mesh = SubResource("CylinderMesh_y4655")
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=1844819668]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=510660823]
+shape = SubResource("CylinderShape3D_4ngi6")
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=709550519]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=793282856]
+shape = SubResource("ConvexPolygonShape3D_xdeaf")
+debug_color = Color(0.9774911, 0.13867116, 0.15180287, 0.41960785)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="AttackArea/CollisionShape3D" unique_id=542221337]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.3
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_g65y5")
+draw_pass_1 = SubResource("QuadMesh_ilqsc")
+
+[node name="LevelIndicators" type="Node3D" parent="." unique_id=1205199374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0452418, 0)
+
+[node name="Level_1" type="MeshInstance3D" parent="LevelIndicators" unique_id=1392554721]
+mesh = SubResource("CylinderMesh_xdeaf")
+skeleton = NodePath("")
+
+[node name="Level_2" type="MeshInstance3D" parent="LevelIndicators" unique_id=1073301909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+visible = false
+mesh = SubResource("CylinderMesh_mhno6")
+skeleton = NodePath("")
+
+[node name="Level_3" type="MeshInstance3D" parent="LevelIndicators" unique_id=1567319442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+visible = false
+mesh = SubResource("CylinderMesh_bma7o")
+skeleton = NodePath("")
+
+[node name="Level_4" type="MeshInstance3D" parent="LevelIndicators" unique_id=1468299130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+visible = false
+mesh = SubResource("CylinderMesh_ilqsc")
+skeleton = NodePath("")
+
+[node name="Level_5" type="MeshInstance3D" parent="LevelIndicators" unique_id=983581310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
+mesh = SubResource("CylinderMesh_nrgch")
+skeleton = NodePath("")

@@ -1,0 +1,85 @@
+[gd_scene load_steps=15 format=3 uid="uid://cwyt8h3dpv25x"]
+
+[ext_resource type="Script" uid="uid://d2qu5y0gg03f6" path="res://scripts/fight/projectiles/electric_projectile.gd" id="1_woj5k"]
+[ext_resource type="Material" uid="uid://37q0cue3osg2" path="res://materials/projectiles/electric_projectile.tres" id="2_o114c"]
+[ext_resource type="Shader" uid="uid://rqrbdmoyrivi" path="res://materials/shaders/electric.gdshader" id="3_ely38"]
+[ext_resource type="Texture2D" uid="uid://c3uuvp8j8w08t" path="res://materials/shaders/electric_texture.tres" id="4_lf30x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o114c"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ykfi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xedxl"]
+material = ExtResource("2_o114c")
+
+[sub_resource type="Gradient" id="Gradient_4ceyx"]
+offsets = PackedFloat32Array(0, 0.7, 0.75, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ely38"]
+noise_type = 2
+seed = 1
+frequency = 0.03
+fractal_weighted_strength = 0.38
+cellular_return_type = 6
+domain_warp_enabled = true
+domain_warp_amplitude = 20.0
+domain_warp_fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i7aax"]
+seamless = true
+color_ramp = SubResource("Gradient_4ceyx")
+noise = SubResource("FastNoiseLite_ely38")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xedxl"]
+noise_type = 0
+frequency = 0.0112
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_67fg0"]
+seamless = true
+noise = SubResource("FastNoiseLite_xedxl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfxcf"]
+render_priority = 0
+shader = ExtResource("3_ely38")
+shader_parameter/lightningNoise1 = ExtResource("4_lf30x")
+shader_parameter/lightningNoise2 = SubResource("NoiseTexture2D_i7aax")
+shader_parameter/tint = Color(0, 90.601, 75.564, 1)
+shader_parameter/distortionVertex = 0.125
+shader_parameter/speedVertex = 0.5
+shader_parameter/noiseVertex = SubResource("NoiseTexture2D_67fg0")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67fg0"]
+
+[node name="ElectricProjectile" type="RigidBody3D"]
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_o114c")
+gravity_scale = 0.0
+script = ExtResource("1_woj5k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2ykfi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_xedxl")
+surface_material_override/0 = SubResource("ShaderMaterial_sfxcf")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_67fg0")
+debug_color = Color(0.733333, 0.462745, 0.227451, 0.419608)
+
+[node name="TimeToLive" type="Timer" parent="."]
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(0.517647, 1, 1, 1)
+light_energy = 2.0
+light_specular = 0.0
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_caster_mask = 4293918721

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b73ycly5203vg"]
+
+[ext_resource type="Script" uid="uid://dstnkymnm3jwa" path="res://scripts/fight/statusEffects/speed_effect.gd" id="1_rnev3"]
+
+[node name="SpeedEffect" type="Node"]
+script = ExtResource("1_rnev3")

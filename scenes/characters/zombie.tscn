@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://bualks0wajs8i"]
+
+[ext_resource type="Script" uid="uid://veoyspye5l5q" path="res://scripts/characters/zombie.gd" id="1_fulqv"]
+[ext_resource type="Material" uid="uid://pcviwwdbpg5g" path="res://materials/shaders/zombie_on_fire.tres" id="2_u6mvt"]
+[ext_resource type="Material" uid="uid://dc0wnhgk2gfc4" path="res://materials/creatures/health_bar_color.tres" id="4_c44uy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fulqv"]
+radius = 0.6
+height = 2.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uql5s"]
+albedo_color = Color(0.121569, 0.564706, 0.188235, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j7qbc"]
+material = SubResource("StandardMaterial3D_uql5s")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f2e6v"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fulqv"]
+height = 4.37866
+radius = 25.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f2e6v"]
+height = 5.88086
+radius = 40.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fccri"]
+height = 2.82642
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_u6mvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fccri"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 1, 2), Vector3(10, 1, 10)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"recover_after_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pg0rp"]
+resource_name = "recover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(10, 1, 10), Vector3(1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_attack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pg0rp"]
+_data = {
+&"RESET": SubResource("Animation_u6mvt"),
+&"attack": SubResource("Animation_fccri"),
+&"recover": SubResource("Animation_pg0rp")
+}
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fyi4w"]
+material = ExtResource("2_u6mvt")
+radius = 0.51
+height = 2.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_u6mvt"]
+resource_local_to_scene = true
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6mvt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pg0rp"]
+material = SubResource("StandardMaterial3D_u6mvt")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pg0rp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2nful"]
+material = SubResource("StandardMaterial3D_pg0rp")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="QuadMesh" id="QuadMesh_fyi4w"]
+resource_local_to_scene = true
+material = ExtResource("4_c44uy")
+size = Vector2(1, 0.15)
+
+[node name="Zombie" type="CharacterBody3D" unique_id=79647239]
+collision_layer = 0
+script = ExtResource("1_fulqv")
+id = 1
+
+[node name="EnemyArea3D" type="Area3D" parent="." unique_id=818910945]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyArea3D" unique_id=1706505373]
+shape = SubResource("CapsuleShape3D_fulqv")
+debug_color = Color(0.882208, 0.304611, 0.375487, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=562022505]
+mesh = SubResource("CapsuleMesh_j7qbc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=482449318]
+visible = false
+shape = SubResource("CapsuleShape3D_f2e6v")
+
+[node name="Navigation" type="Node3D" parent="." unique_id=1476668289]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Navigation" unique_id=288741276]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="UpdateNavigation" type="Timer" parent="Navigation" unique_id=2101116337]
+wait_time = 0.5
+autostart = true
+
+[node name="ChaseArea" type="Area3D" parent="." unique_id=973025661]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea" unique_id=306309582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18933, 0)
+shape = SubResource("CylinderShape3D_fulqv")
+debug_color = Color(0.811437, 0.406932, 0.149797, 0.42)
+
+[node name="ReleaseChaseArea" type="Area3D" parent="." unique_id=251351233]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ReleaseChaseArea" unique_id=2126682745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94043, 0)
+shape = SubResource("CylinderShape3D_f2e6v")
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=543636878]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=2090291365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.413208, 0)
+shape = SubResource("CylinderShape3D_fccri")
+debug_color = Color(0.954993, 0.12164, 0.442674, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1860755683]
+libraries/ = SubResource("AnimationLibrary_pg0rp")
+
+[node name="Effect" type="MeshInstance3D" parent="." unique_id=1152309440]
+visible = false
+mesh = SubResource("CapsuleMesh_fyi4w")
+
+[node name="TypeVisualIndicator" type="MeshInstance3D" parent="." unique_id=1846514791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_u6mvt")
+
+[node name="Eye" type="MeshInstance3D" parent="." unique_id=1962692149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171618, 0.558517, 0.441664)
+mesh = SubResource("SphereMesh_pg0rp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Eye" unique_id=284690872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.102719)
+mesh = SubResource("SphereMesh_2nful")
+
+[node name="Eye2" type="MeshInstance3D" parent="." unique_id=1015038076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153504, 0.558517, 0.441664)
+mesh = SubResource("SphereMesh_pg0rp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Eye2" unique_id=448841337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.102719)
+mesh = SubResource("SphereMesh_2nful")
+
+[node name="HealthBar" type="MeshInstance3D" parent="." unique_id=1124887021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+mesh = SubResource("QuadMesh_fyi4w")
+skeleton = NodePath("")
+
+[connection signal="body_entered" from="EnemyArea3D" to="." method="_on_enemy_area_3d_body_entered"]
+[connection signal="area_entered" from="ChaseArea" to="." method="_on_chase_area_area_entered"]
+[connection signal="area_exited" from="ReleaseChaseArea" to="." method="_on_release_chase_area_area_exited"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]

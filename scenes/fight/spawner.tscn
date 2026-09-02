@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd537x5u1p14r"]
+
+[ext_resource type="Script" uid="uid://2cntb8xe6g6h" path="res://scripts/fight/spawner.gd" id="1_07l1p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07l1p"]
+size = Vector3(100, 20, 100)
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_07l1p")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_07l1p")
+debug_color = Color(0.180392, 0.419608, 0.227451, 0.898039)
+
+[node name="PlayerRayCast" type="RayCast3D" parent="."]
+collision_mask = 2
+collide_with_areas = true
+debug_shape_custom_color = Color(0.69287, 0.272738, 0.317316, 1)
+
+[node name="wallRayCast" type="RayCast3D" parent="."]
+collision_mask = 48
+debug_shape_custom_color = Color(0.673958, 0.124162, 0.71257, 1)
+debug_shape_thickness = 5
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

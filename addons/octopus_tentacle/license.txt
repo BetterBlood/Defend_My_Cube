@@ -1,0 +1,11 @@
+Model Information:
+* title:	Octopus Tentacle
+* source:	https://sketchfab.com/3d-models/octopus-tentacle-3227ddffbf3c4ade8825df70ccc17f2e
+* author:	Daniel Gryningstjerna (https://sketchfab.com/dangry)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Octopus Tentacle" (https://sketchfab.com/3d-models/octopus-tentacle-3227ddffbf3c4ade8825df70ccc17f2e) by Daniel Gryningstjerna (https://sketchfab.com/dangry) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

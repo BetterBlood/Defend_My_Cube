@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://y1yw5naea0tu"]
+
+[ext_resource type="Script" uid="uid://cp0j2ml3yhrbt" path="res://scripts/characters/player.gd" id="1_yewv4"]
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_eojnx"]
+[ext_resource type="Material" uid="uid://dc0wnhgk2gfc4" path="res://materials/creatures/health_bar_color.tres" id="3_6eyoc"]
+[ext_resource type="Material" uid="uid://bphwlg5v8xkde" path="res://materials/difficulties/kido.tres" id="3_7vyk4"]
+[ext_resource type="PackedScene" uid="uid://dpx68uy1u0wsw" path="res://scenes/wip/debug_infos.tscn" id="3_76oj4"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_qgnko"]
+[ext_resource type="PackedScene" uid="uid://bg58p3le6eq0l" path="res://scenes/fight/ui.tscn" id="4_dyp2m"]
+[ext_resource type="Material" uid="uid://dql877iq35we0" path="res://materials/difficulties/mazo.tres" id="5_2l4js"]
+[ext_resource type="PackedScene" uid="uid://bwxtl2bygbfxx" path="res://scenes/decorations/pause_menu.tscn" id="5_atpat"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="5_k4v7y"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_3wg1y"]
+[ext_resource type="Script" uid="uid://cjc182lvsit58" path="res://scripts/characters/bridge_vr_to_normal.gd" id="6_d6tgn"]
+[ext_resource type="PackedScene" uid="uid://c4o0dbwehamwl" path="res://scenes/decorations/upgrade_menu.tscn" id="6_kqtwu"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="7_k4v7y"]
+[ext_resource type="Script" uid="uid://dsj6j0et048b2" path="res://scripts/decorations/menus/pause_menu_3d.gd" id="12_xrqxk"]
+[ext_resource type="Script" uid="uid://bfkihanbfm45k" path="res://scripts/decorations/menus/upgrade_menu_3d.gd" id="14_g66nw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8vuu"]
+albedo_color = Color(0.784314, 0.133333, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+material = SubResource("StandardMaterial3D_u8vuu")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_eojnx"]
+material = ExtResource("3_6eyoc")
+size = Vector2(1, 0.01)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yewv4"]
+radius = 0.6
+height = 2.2
+
+[node name="Player" type="CharacterBody3D" unique_id=1552602707 groups=["Player"]]
+collision_layer = 32770
+script = ExtResource("1_yewv4")
+metadata/_custom_type_script = "uid://cp0j2ml3yhrbt"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=886372694]
+mesh = SubResource("CapsuleMesh_3vyb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=156467308]
+shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=602473296]
+process_mode = 3
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=1214587072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72523206, 0)
+current = true
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D" unique_id=647596235]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24682379, 0.782, 0)
+tracker = &"left_hand"
+pose = &"grip"
+script = ExtResource("6_d6tgn")
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" unique_id=869259954 instance=ExtResource("2_eojnx")]
+hand_material_override = ExtResource("3_7vyk4")
+
+[node name="FunctionPickup" parent="XROrigin3D/LeftController" unique_id=1189559513 instance=ExtResource("5_k4v7y")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="FunctionPointer" parent="XROrigin3D/LeftController" unique_id=2146854369 instance=ExtResource("6_3wg1y")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.02, -0.03535534, -0.10606602)
+show_target = true
+target_radius = 0.005
+
+[node name="Viewport2Din3D_UI" parent="XROrigin3D/LeftController" unique_id=190006590 instance=ExtResource("7_k4v7y")]
+process_mode = 3
+transform = Transform3D(0.11297549, -0.8423024, -0.5270324, -0.5287813, -0.5000436, 0.68581825, -0.84120584, 0.20120424, -0.5018862, -0.17, -0.045, 0.05)
+screen_size = Vector2(0.3, 0.3)
+collision_layer = 5242880
+scene = ExtResource("4_dyp2m")
+viewport_size = Vector2(960, 960)
+transparent = 1
+scene_properties_keys = PackedStringArray("ui.gd")
+
+[node name="Viewport2Din3D_DEBUG" parent="XROrigin3D/LeftController" unique_id=2069482061 instance=ExtResource("7_k4v7y")]
+transform = Transform3D(0.11297548, -0.8423024, -0.5270325, -0.52878124, -0.5000436, 0.6858184, -0.8412057, 0.20120424, -0.5018863, -0.17, -0.045, 0.05)
+screen_size = Vector2(0.3, 0.3)
+collision_layer = 5242880
+scene = ExtResource("3_76oj4")
+viewport_size = Vector2(960, 540)
+transparent = 1
+scene_properties_keys = PackedStringArray("debug_infos.gd")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D" unique_id=205739333]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077201, 0.782, 0)
+tracker = &"right_hand"
+pose = &"grip"
+script = ExtResource("6_d6tgn")
+
+[node name="RightHand" parent="XROrigin3D/RightController" unique_id=1408298639 instance=ExtResource("3_qgnko")]
+hand_material_override = ExtResource("5_2l4js")
+
+[node name="FunctionPickup" parent="XROrigin3D/RightController" unique_id=639633042 instance=ExtResource("5_k4v7y")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="FunctionPointer" parent="XROrigin3D/RightController" unique_id=1212916066 instance=ExtResource("6_3wg1y")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -0.02, -0.03535534, -0.10606602)
+show_target = true
+target_radius = 0.005
+collision_mask = 5242881
+
+[node name="Viewport2Din3D_Pause" parent="XROrigin3D" unique_id=1532644214 instance=ExtResource("7_k4v7y")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.4)
+visible = false
+script = ExtResource("12_xrqxk")
+scene = ExtResource("5_atpat")
+viewport_size = Vector2(1920, 1080)
+transparent = 1
+scene_properties_keys = PackedStringArray("pause_menu.gd")
+
+[node name="Viewport2Din3D_Upgrade" parent="XROrigin3D" unique_id=927864594 instance=ExtResource("7_k4v7y")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+visible = false
+script = ExtResource("14_g66nw")
+scene = ExtResource("6_kqtwu")
+viewport_size = Vector2(1920, 1080)
+transparent = 1
+scene_properties_keys = PackedStringArray("upgrade_menu.gd")
+
+[node name="Head" type="Node3D" parent="." unique_id=1725934758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=876976920]
+
+[node name="HealthBar" type="MeshInstance3D" parent="Head" unique_id=255821535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.548, -0.749)
+mesh = SubResource("QuadMesh_eojnx")
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=458403396]
+target_position = Vector3(0, 0, -100)
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 1
+
+[node name="Marker3D" type="Marker3D" parent="Head/RayCast3D" unique_id=1360030257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="PlayerArea3D" type="Area3D" parent="." unique_id=1912841145]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea3D" unique_id=1146862450]
+shape = SubResource("CapsuleShape3D_yewv4")
+debug_color = Color(0.78148, 0.41709, 0.350172, 0.42)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1105936794]
+
+[node name="DEBUG_INFOS" parent="CanvasLayer" unique_id=1423031249 instance=ExtResource("3_76oj4")]
+mouse_filter = 1
+
+[node name="UI" parent="CanvasLayer" unique_id=1415110431 instance=ExtResource("4_dyp2m")]
+
+[node name="UpgradeMenu" parent="CanvasLayer" unique_id=55915981 instance=ExtResource("6_kqtwu")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=7104274 instance=ExtResource("5_atpat")]
+visible = false
+
+[node name="GrapplinPosition" type="Marker3D" parent="." unique_id=1394280067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.35, -1.5)
+
+[node name="Elbow" type="Marker3D" parent="." unique_id=794789082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.651, 0.282, -0.733)
+
+[node name="RuneSpot" type="Marker3D" parent="." unique_id=1127498505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.35, -1.5)
+
+[node name="RuneSpotTwo" type="Marker3D" parent="." unique_id=1906086822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, -1.5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=485300928]
+light_energy = 5.0
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[connection signal="body_entered" from="PlayerArea3D" to="." method="_on_player_area_3d_body_entered"]

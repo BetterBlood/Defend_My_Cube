@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://cnbwwgrhxy85i"]
+
+[ext_resource type="Script" uid="uid://03llbkb1uns" path="res://scripts/decorations/continue_menu.gd" id="1_yafsn"]
+[ext_resource type="Texture2D" uid="uid://pneio6dylnwh" path="res://addons/polyrinthe/images/MazeInsideView_normalMode_scale2.PNG" id="2_vtfcp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b1u5"]
+texture = ExtResource("2_vtfcp")
+modulate_color = Color(0.612036, 0.612036, 0.612036, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3wwc"]
+bg_color = Color(0.345646, 0.666641, 0.621584, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_me0qa"]
+bg_color = Color(0.810192, 0.500608, 0.517061, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b1u5"]
+bg_color = Color(0.318291, 0.652123, 0.749298, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl711"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54ofv"]
+bg_color = Color(0.739831, 0.554448, 0.440939, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[node name="ContinueMenu" type="CanvasLayer" unique_id=687149768]
+script = ExtResource("1_yafsn")
+
+[node name="MainPanel" type="Control" parent="." unique_id=43860120]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainPanel" unique_id=1573020379]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3b1u5")
+
+[node name="Label" type="Label" parent="MainPanel" unique_id=1080335672]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.5
+offset_top = -298.5
+offset_right = 349.5
+offset_bottom = -161.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel" unique_id=1469492329]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -110.0
+offset_right = 138.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=337892590]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer" unique_id=1770731278]
+layout_mode = 2
+text = "player name: "
+
+[node name="PlayerName" type="LineEdit" parent="MainPanel/VBoxContainer/HBoxContainer" unique_id=609002727]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Return")
+focus_neighbor_bottom = NodePath("../../Continue")
+focus_next = NodePath("../../Continue")
+focus_previous = NodePath("../../Return")
+placeholder_text = "John"
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Continue" type="Button" parent="MainPanel/VBoxContainer" unique_id=636484742]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../HBoxContainer/PlayerName")
+focus_neighbor_bottom = NodePath("../Return")
+focus_next = NodePath("../Return")
+focus_previous = NodePath("../HBoxContainer/PlayerName")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+text = "Continue"
+
+[node name="Return" type="Button" parent="MainPanel/VBoxContainer" unique_id=1117778517]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../HBoxContainer/PlayerName")
+focus_next = NodePath("../HBoxContainer/PlayerName")
+focus_previous = NodePath("../Continue")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+text = "Return"
+
+[node name="KnownPlayer" type="VBoxContainer" parent="MainPanel" unique_id=330752349]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ListTitle" type="Label" parent="MainPanel/KnownPlayer" unique_id=2043457606]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "player list: "
+
+[connection signal="text_submitted" from="MainPanel/VBoxContainer/HBoxContainer/PlayerName" to="." method="_on_player_name_text_submitted"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/Return" to="." method="_on_return_pressed"]

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8ml3t6n4slrw"]
+
+[ext_resource type="Shader" uid="uid://cv4002jxmab77" path="res://materials/shaders/dissolve.gdshader" id="1_v6guf"]
+[ext_resource type="Texture2D" uid="uid://bp20e4diu5rto" path="res://addons/octopus_tentacle/textures/Material_001_baseColor.jpeg" id="2_mjx4w"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v6guf")
+shader_parameter/baseColor = Color(0.457244, 0.268826, 0.235674, 0)
+shader_parameter/baseColorTexture = ExtResource("2_mjx4w")
+shader_parameter/dissolveSlider = 4.75e-08
+shader_parameter/dissolveNoiseScale = 32.0
+shader_parameter/edgeNoiseScale = 0.0
+shader_parameter/edgesThickness = 0.3
+shader_parameter/edgeColor = Color(0.858824, 0, 0, 0.870588)
+shader_parameter/edgeEmissionSlider = 10.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 5.0
+shader_parameter/animation_intensity = 0.52

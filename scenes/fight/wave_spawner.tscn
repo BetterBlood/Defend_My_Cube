@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b155ml35h2d3h"]
+
+[ext_resource type="Script" uid="uid://bwghvyx4u7u0y" path="res://scripts/fight/wave_spawner.gd" id="1_5uurh"]
+
+[node name="WaveSpawner" type="Node3D" unique_id=2130021996]
+script = ExtResource("1_5uurh")
+metadata/_custom_type_script = "uid://2cntb8xe6g6h"

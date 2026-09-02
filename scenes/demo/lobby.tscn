@@ -1,0 +1,1583 @@
+[gd_scene format=3 uid="uid://br883pylmypa7"]
+
+[ext_resource type="Script" uid="uid://wdhsttcv1ana" path="res://scripts/demo/lobby.gd" id="1_yr8w2"]
+[ext_resource type="PackedScene" uid="uid://y1yw5naea0tu" path="res://scenes/characters/player.tscn" id="2_pdx53"]
+[ext_resource type="PackedScene" uid="uid://bualks0wajs8i" path="res://scenes/characters/zombie.tscn" id="3_d1p01"]
+[ext_resource type="PackedScene" uid="uid://dvkq4hwixk2m8" path="res://scenes/decorations/torch.tscn" id="4_u1smo"]
+[ext_resource type="PackedScene" uid="uid://canga3dhywbr3" path="res://scenes/portal_with_frame.tscn" id="5_4of2y"]
+[ext_resource type="Texture2D" uid="uid://lqyjfynm7hls" path="res://images/runes/den.png" id="6_cdc4y"]
+[ext_resource type="Texture2D" uid="uid://cq7rc4ydmx3dh" path="res://images/runes/typesDiag.png" id="6_nv4q3"]
+[ext_resource type="Material" uid="uid://dla2uqqdaue2e" path="res://materials/projectiles/debug_projectile.tres" id="6_pdx53"]
+[ext_resource type="PackedScene" uid="uid://cgkf7mglet062" path="res://scenes/decorations/seed_selector.tscn" id="6_u1smo"]
+[ext_resource type="Material" uid="uid://penbwn0i2in" path="res://materials/ice.tres" id="6_yr8w2"]
+[ext_resource type="PackedScene" uid="uid://gxh7el742n46" path="res://scenes/decorations/size_selector.tscn" id="7_d1p01"]
+[ext_resource type="PackedScene" uid="uid://1l6fhyplxedk" path="res://scenes/decorations/difficulty_selector.tscn" id="7_pdx53"]
+[ext_resource type="PackedScene" uid="uid://bsx71lc6whpp5" path="res://scenes/decorations/algo_selector.tscn" id="9_4of2y"]
+[ext_resource type="PackedScene" uid="uid://cbtw3epdjui6n" path="res://scenes/decorations/begin_id_selector.tscn" id="10_f5ty6"]
+[ext_resource type="PackedScene" uid="uid://drrpq2dh7v0b2" path="res://scenes/movement/fake_portal.tscn" id="12_iojra"]
+[ext_resource type="Texture2D" uid="uid://pxt2ln8sufke" path="res://images/runes/tsune.png" id="13_y5vlq"]
+[ext_resource type="Texture2D" uid="uid://dqga45rrx4185" path="res://images/runes/hi2.png" id="14_y0rwf"]
+[ext_resource type="Texture2D" uid="uid://5ueb5nk17vmi" path="res://images/runes/kusa.png" id="15_y0rwf"]
+[ext_resource type="ArrayOccluder3D" uid="uid://3bqu3on6si6y" path="res://materials/occluders/lobby.occ" id="19_uubc7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wehoa"]
+sky_top_color = Color(0.0970707, 0.463976, 0.749279, 1)
+sky_horizon_color = Color(0.864113, 0.583237, 0.605194, 1)
+ground_bottom_color = Color(0.111278, 0.19951, 0.118981, 1)
+ground_horizon_color = Color(0.834261, 0.378337, 0.387769, 1)
+
+[sub_resource type="Sky" id="Sky_30cnl"]
+sky_material = SubResource("ProceduralSkyMaterial_wehoa")
+
+[sub_resource type="Environment" id="Environment_4d0q1"]
+background_mode = 2
+sky = SubResource("Sky_30cnl")
+ambient_light_source = 1
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_wehoa"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6728e"]
+data = PackedVector3Array(-25, 0.1, 25, 25, 0.1, 25, -25, -0.1, 25, 25, 0.1, 25, 25, -0.1, 25, -25, -0.1, 25, 25, 0.1, -25, -25, 0.1, -25, 25, -0.1, -25, -25, 0.1, -25, -25, -0.1, -25, 25, -0.1, -25, 25, 0.1, 25, 25, 0.1, -25, 25, -0.1, 25, 25, 0.1, -25, 25, -0.1, -25, 25, -0.1, 25, -25, 0.1, -25, -25, 0.1, 25, -25, -0.1, -25, -25, 0.1, 25, -25, -0.1, 25, -25, -0.1, -25, 25, 0.1, 25, -25, 0.1, 25, 25, 0.1, -25, -25, 0.1, 25, -25, 0.1, -25, 25, 0.1, -25, -25, -0.1, 25, 25, -0.1, 25, -25, -0.1, -25, 25, -0.1, 25, 25, -0.1, -25, -25, -0.1, -25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6728e"]
+size = Vector3(50, 30, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8d4em"]
+data = PackedVector3Array(-25, 15, 0.15, 25, 15, 0.15, -25, -15, 0.15, 25, 15, 0.15, 25, -15, 0.15, -25, -15, 0.15, 25, 15, -0.15, -25, 15, -0.15, 25, -15, -0.15, -25, 15, -0.15, -25, -15, -0.15, 25, -15, -0.15, 25, 15, 0.15, 25, 15, -0.15, 25, -15, 0.15, 25, 15, -0.15, 25, -15, -0.15, 25, -15, 0.15, -25, 15, -0.15, -25, 15, 0.15, -25, -15, -0.15, -25, 15, 0.15, -25, -15, 0.15, -25, -15, -0.15, 25, 15, 0.15, -25, 15, 0.15, 25, 15, -0.15, -25, 15, 0.15, -25, 15, -0.15, 25, 15, -0.15, -25, -15, 0.15, 25, -15, 0.15, -25, -15, -0.15, 25, -15, 0.15, 25, -15, -0.15, -25, -15, -0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr8w2"]
+albedo_color = Color(0.341176, 0.870588, 0.913725, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7x35k"]
+material = SubResource("StandardMaterial3D_yr8w2")
+size = Vector3(50, 30, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcxnu"]
+material = ExtResource("6_pdx53")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wkq0h"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iojra"]
+size = Vector3(2, 2.5, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_br7h5"]
+vertices = PackedVector3Array(-0.650002, -19.6, -1.15, 0.0999985, -19.6, -1.15, 0.0999985, -19.6, -24.15, -24.15, -19.6, -0.150002, -1.15, -19.6, -0.150002, -24.15, -19.6, -24.15, 1.1, -19.6, -0.650002, 1.1, -19.6, 0.599998, 24.35, -19.6, 0.599998, 24.35, -19.6, -24.15, -1.65, -19.6, 7.6, -0.150002, -19.6, 7.6, -0.150002, -19.6, 1.1, -1.15, -19.6, 0.599998, -24.15, -19.6, 8.6, -1.9, -19.6, 8.6, 0.349998, -19.6, 7.85, 0.349998, -19.6, 8.6, 1.1, -19.6, 8.6, 1.35, -19.6, 7.6, 0.849998, -19.6, 1.1, 4.1, -19.6, 7.6, 24.35, -19.6, 9.1, 4.35, -19.6, 9.1, -1.4, -19.6, 24.35, -1.4, -19.6, 9.85, -1.9, -19.6, 9.6, -24.15, -19.6, 24.35, 1.35, -19.6, 9.85, 0.0999985, -19.6, 9.85, 3.85, -19.6, 24.35, 3.85, -19.6, 9.85, 23.35, -19.6, 14.6, 22.85, -19.6, 14.85, 23.35, -19.6, 16.35, 21.6, -19.6, 13.6, 23.35, -19.6, 13.6, 24.35, -19.6, 24.35, 21.6, -19.6, 16.35)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 0), PackedInt32Array(0, 3, 5), PackedInt32Array(0, 5, 2), PackedInt32Array(8, 7, 6), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 9), PackedInt32Array(6, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 4), PackedInt32Array(4, 10, 15), PackedInt32Array(4, 15, 14), PackedInt32Array(4, 14, 3), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(20, 7, 19), PackedInt32Array(19, 7, 21), PackedInt32Array(16, 11, 19), PackedInt32Array(19, 11, 20), PackedInt32Array(20, 11, 12), PackedInt32Array(22, 21, 8), PackedInt32Array(8, 21, 7), PackedInt32Array(22, 23, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(26, 27, 14), PackedInt32Array(14, 15, 26), PackedInt32Array(18, 28, 17), PackedInt32Array(17, 28, 29), PackedInt32Array(29, 28, 24), PackedInt32Array(24, 28, 30), PackedInt32Array(28, 31, 30), PackedInt32Array(24, 25, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(36, 35, 22), PackedInt32Array(22, 35, 23), PackedInt32Array(32, 36, 22), PackedInt32Array(32, 22, 34), PackedInt32Array(34, 22, 37), PackedInt32Array(23, 35, 38), PackedInt32Array(38, 34, 37), PackedInt32Array(31, 23, 30), PackedInt32Array(30, 23, 38), PackedInt32Array(30, 38, 37)]
+agent_height = 2.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7x35k"]
+data = PackedVector3Array(-25, 0.1, 25, 25, 0.1, 25, -25, -0.1, 25, 25, 0.1, 25, 25, -0.1, 25, -25, -0.1, 25, 25, 0.1, -25, -25, 0.1, -25, 25, -0.1, -25, -25, 0.1, -25, -25, -0.1, -25, 25, -0.1, -25, 25, 0.1, 25, 25, 0.1, -25, 25, -0.1, 25, 25, 0.1, -25, 25, -0.1, -25, 25, -0.1, 25, -25, 0.1, -25, -25, 0.1, 25, -25, -0.1, -25, -25, 0.1, 25, -25, -0.1, 25, -25, -0.1, -25, 25, 0.1, 25, -25, 0.1, 25, 25, 0.1, -25, -25, 0.1, 25, -25, 0.1, -25, 25, 0.1, -25, -25, -0.1, 25, 25, -0.1, 25, -25, -0.1, -25, 25, -0.1, 25, 25, -0.1, -25, -25, -0.1, -25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkq0h"]
+size = Vector3(50, 20, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_267vg"]
+data = PackedVector3Array(-25, 10, 0.15, 25, 10, 0.15, -25, -10, 0.15, 25, 10, 0.15, 25, -10, 0.15, -25, -10, 0.15, 25, 10, -0.15, -25, 10, -0.15, 25, -10, -0.15, -25, 10, -0.15, -25, -10, -0.15, 25, -10, -0.15, 25, 10, 0.15, 25, 10, -0.15, 25, -10, 0.15, 25, 10, -0.15, 25, -10, -0.15, 25, -10, 0.15, -25, 10, -0.15, -25, 10, 0.15, -25, -10, -0.15, -25, 10, 0.15, -25, -10, 0.15, -25, -10, -0.15, 25, 10, 0.15, -25, 10, 0.15, 25, 10, -0.15, -25, 10, 0.15, -25, 10, -0.15, 25, 10, -0.15, -25, -10, 0.15, 25, -10, 0.15, -25, -10, -0.15, 25, -10, 0.15, 25, -10, -0.15, -25, -10, -0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkq0h"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wkq0h"]
+material = SubResource("StandardMaterial3D_wkq0h")
+height = 50.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6728e"]
+height = 50.0
+
+[node name="Lobby" type="Node3D" unique_id=188238372]
+script = ExtResource("1_yr8w2")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=422780738]
+occluder = ExtResource("19_uubc7")
+
+[node name="Player" parent="." unique_id=775328654 instance=ExtResource("2_pdx53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 2, -1)
+is_in_lobby = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1812735055]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 52.1937, 3.85321)
+visible = false
+light_energy = 15.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=80440546]
+environment = SubResource("Environment_4d0q1")
+
+[node name="Enemy" parent="." unique_id=69844331 instance=ExtResource("3_d1p01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7913, -17.7606, -7.26184)
+id = 11
+is_in_lobby = true
+
+[node name="Enemy2" parent="." unique_id=1548108516 instance=ExtResource("3_d1p01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2531, -17.2201, -4.26082)
+id = 12
+is_in_lobby = true
+
+[node name="Enemy3" parent="." unique_id=1653943189 instance=ExtResource("3_d1p01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25537, -17.3363, 2.54891)
+id = 13
+is_in_lobby = true
+
+[node name="Torch2" parent="." unique_id=518977858 instance=ExtResource("4_u1smo")]
+transform = Transform3D(0.653288, 0.757109, 0, -0.757109, 0.653288, 0, 0, 0, 1, -24.757, 7.5, 0)
+
+[node name="Torch3" parent="." unique_id=1474964184 instance=ExtResource("4_u1smo")]
+transform = Transform3D(0.653421, 0.756995, 0, -0.756995, 0.653421, 0, 0, 0, 1, -24.757, 7.5, -15)
+begin_lit = true
+
+[node name="MainFloor" type="Node3D" parent="." unique_id=2066781580]
+
+[node name="Floor" type="StaticBody3D" parent="MainFloor" unique_id=1290981944]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Floor" unique_id=500485437]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Floor" unique_id=1589227053]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Floor" unique_id=1962626115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, 3.703, -4.761)
+modulate = Color(1, 0, 1, 1)
+text = "Hey...
+
+Listen...
+
+ I mean read these words if you feel lost                           ======>                                                                                                               these words,              okey this seams to doesn't help you. Maybe try pressing \"Escape\" ? "
+horizontal_alignment = 0
+
+[node name="Label3D2" type="Label3D" parent="MainFloor/Floor" unique_id=23036005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, 2.13, -4.761)
+modulate = Color(1, 0, 1, 1)
+text = "\"wasd\" or \"left joystick\" to move, what ever it means....
+
+Ho and the right one is to look outthere, or the mouse they said 
+
+ (o . O) < ( no idea how a mouse could help you to move your vision...)"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="MainFloor/Floor" unique_id=737023903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.9954, 3.783, -4.761)
+modulate = Color(1, 0, 1, 1)
+text = "Okey now let's try your grapple, mmm.... let me remember                                    
+
+
+should be \"right trigger\" or \"right clic\", try pointing this   => o <= and hold it,
+when you hook something then  release it a speed bonus is granted ;)"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="MainFloor/Floor" unique_id=976008748]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.0973, 23.0684, 25.0861)
+modulate = Color(1, 0, 1, 1)
+text = "WARNING !!!  ===> 
+
+Yes just here on right, it's a portal =>
+
+You can take it to teleport you to an other place
+
+But this one is the exit of this small maze
+
+Go this way if you want more information 
+or return bellow to practice your grabs"
+horizontal_alignment = 0
+
+[node name="Label3D5" type="Label3D" parent="MainFloor/Floor" unique_id=890152203]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 72.0259, 20.553, 8.85909)
+modulate = Color(1, 0, 1, 1)
+text = "You need an ice grapple upgrade to grab ice wall"
+horizontal_alignment = 0
+
+[node name="Label3D5_2" type="Label3D" parent="MainFloor/Floor" unique_id=1448601551]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54.3156, 20.7108, 10.9903)
+modulate = Color(1, 0, 1, 1)
+text = ">> o <<
+Hook here to pass !"
+
+[node name="Label3D6" type="Label3D" parent="MainFloor/Floor" unique_id=1062260804]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 16.6397, 0.11, 19.679)
+modulate = Color(1, 0, 1, 1)
+text = "Okey now let's try to \"left clic\" or \"left trigger\".
+
+It's your rune, if you read this for the first time it's probably standard rune with normal damage.
+
+You can see the visual indicator on the left of your vision.
+
+Please proceed your way up there"
+horizontal_alignment = 0
+
+[node name="Label3D7" type="Label3D" parent="MainFloor/Floor" unique_id=1930590913]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 4.99074, 0.11, 18.8838)
+modulate = Color(1, 0, 1, 1)
+text = "Perfect
+
+For now all you need to know is that I don't have time to write more information for you.
+
+
+All I can do is wishing you       ( GOOD LUCK ! ) > (^ . ^)"
+horizontal_alignment = 0
+
+[node name="Label3D8" type="Label3D" parent="MainFloor/Floor" unique_id=1070668105]
+transform = Transform3D(0.6024, -0.798194, -3.48902e-08, 0, -4.37114e-08, 1, -0.798194, -0.6024, -2.63318e-08, -15.0825, 0.109999, 16.3175)
+modulate = Color(1, 0, 1, 1)
+text = "Ho one last things, there is a practice room 
+an unlock rune room and a maze preparation room.
+ I think you are smart enought to find them by yourself     xoxo"
+horizontal_alignment = 0
+
+[node name="Label3D9" type="Label3D" parent="MainFloor/Floor" unique_id=976951378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2266, 8.52665, -24.4285)
+modulate = Color(1, 0, 1, 1)
+text = "MAZE ROOM SELECTION
+
+\\/
+\\/
+\\/
+\\/
+\\/"
+font_size = 128
+outline_size = 48
+
+[node name="Label3D10" type="Label3D" parent="MainFloor/Floor" unique_id=627308752]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.1395, 8.52665, -100.578)
+modulate = Color(1, 0, 1, 1)
+text = "When you have a seconde rune
+you can swap using \"Q\" or \"left small trigger\""
+font_size = 128
+outline_size = 48
+
+[node name="Label3D11" type="Label3D" parent="MainFloor/Floor" unique_id=302131861]
+transform = Transform3D(0.913055, -0.407836, -1.78271e-08, 0, -4.37114e-08, 1, -0.407836, -0.913055, -3.99109e-08, -6.28676, 0.226136, -90.9179)
+modulate = Color(1, 0, 1, 1)
+text = "try using your rune to update maze paramettre"
+
+[node name="Label3D12" type="Label3D" parent="MainFloor/Floor" unique_id=1731984033]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.652, 5, 0)
+modulate = Color(1, 0, 1, 1)
+text = "not availlable for now
+
+\\/
+\\/
+\\/
+\\/"
+font_size = 64
+outline_size = 24
+
+[node name="Ceil" type="StaticBody3D" parent="MainFloor" unique_id=249409506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Ceil" unique_id=935771584]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Ceil" unique_id=818910780]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P1 -> Fight Room" parent="MainFloor" unique_id=6632053 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5, 1.25, 15)
+
+[node name="Portal3D" parent="MainFloor/P1 -> Fight Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../NavigationRegion3D/TrainingFloor/P2 -> Main Lobby/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/P1 -> Fight Room" unique_id=1374494940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Practice Room"
+
+[node name="P9 -> Runes Unlock" parent="MainFloor" unique_id=42982507 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5, 1.25, -15)
+
+[node name="Portal3D" parent="MainFloor/P9 -> Runes Unlock" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P11 -> Lobby Main Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/P9 -> Runes Unlock" unique_id=1468721169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Rune Unlock Room"
+
+[node name="P10 -> Health Component Upgrades Room" parent="MainFloor" unique_id=1504267242 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5, 1.25, 0)
+
+[node name="Portal3D" parent="MainFloor/P10 -> Health Component Upgrades Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../HealthComponentUpgradeRoom/P12 -> Lobby Main Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/P10 -> Health Component Upgrades Room" unique_id=160133189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Constitution Upgrade Room"
+
+[node name="Real Lab" type="Node" parent="MainFloor" unique_id=239931038]
+
+[node name="P3 -> Maze Selection" parent="MainFloor/Real Lab" unique_id=2128654266 instance=ExtResource("5_4of2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -22.5)
+
+[node name="Portal3D" parent="MainFloor/Real Lab/P3 -> Maze Selection" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../../MazeSelectionFloor/P4 -> Lobby Main Room/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Real Lab/P3 -> Maze Selection" unique_id=1433660149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Maze Selection Room"
+
+[node name="Debug Lab" type="Node3D" parent="MainFloor" unique_id=198788525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.3371, 0, 0)
+
+[node name="P5 -> Lab 3x3x3 Entrance" parent="MainFloor/Debug Lab" unique_id=787620515 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9297, 1.25, -1.306)
+
+[node name="Portal3D" parent="MainFloor/Debug Lab/P5 -> Lab 3x3x3 Entrance" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../P6 -> Main Room/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Debug Lab/P5 -> Lab 3x3x3 Entrance" unique_id=1998930246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Example maze Entrance"
+
+[node name="P6 -> Main Room" parent="MainFloor/Debug Lab" unique_id=395477509 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.25, -1.306)
+
+[node name="Portal3D" parent="MainFloor/Debug Lab/P6 -> Main Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../P5 -> Lab 3x3x3 Entrance/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Debug Lab/P6 -> Main Room" unique_id=11590383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="P7 -> Return to Lobby" parent="MainFloor/Debug Lab" unique_id=1628401019 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 22.25, 19.5)
+
+[node name="Portal3D" parent="MainFloor/Debug Lab/P7 -> Return to Lobby" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../P8 -> LastRoom 3x3x3/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Debug Lab/P7 -> Return to Lobby" unique_id=937933091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="P8 -> LastRoom 3x3x3" parent="MainFloor/Debug Lab" unique_id=515733024 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9297, 1.25, 16.911)
+
+[node name="Portal3D" parent="MainFloor/Debug Lab/P8 -> LastRoom 3x3x3" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../P7 -> Return to Lobby/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MainFloor/Debug Lab/P8 -> LastRoom 3x3x3" unique_id=1717375136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Example Maze Exit"
+
+[node name="Walls" type="Node3D" parent="MainFloor" unique_id=501988417]
+
+[node name="Wall1" type="StaticBody3D" parent="MainFloor/Walls" unique_id=451953322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall1" unique_id=2138678586]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall1" unique_id=85725091]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="MainFloor/Walls/Wall1" unique_id=940942892]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, -0.16)
+texture = ExtResource("6_nv4q3")
+
+[node name="Wall2" type="StaticBody3D" parent="MainFloor/Walls" unique_id=1111477094]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall2" unique_id=672352025]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall2" unique_id=1238279211]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall3" type="StaticBody3D" parent="MainFloor/Walls" unique_id=99804159]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall3" unique_id=954080919]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall3" unique_id=1973772313]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall4" type="StaticBody3D" parent="MainFloor/Walls" unique_id=2050247709]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall4" unique_id=1301781889]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall4" unique_id=809720555]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall5" type="StaticBody3D" parent="MainFloor/Walls" unique_id=1715170398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 125)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall5" unique_id=1363745438]
+mesh = SubResource("BoxMesh_7x35k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall5" unique_id=875850155]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall6" type="StaticBody3D" parent="MainFloor/Walls" unique_id=1348770669]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25, 45, 0)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall6" unique_id=956674749]
+mesh = SubResource("BoxMesh_7x35k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall6" unique_id=1777415918]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="MainFloor/Walls" unique_id=1590778357]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 45, -25)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall7" unique_id=1646398706]
+mesh = SubResource("BoxMesh_7x35k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall7" unique_id=256279906]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="MainFloor/Walls" unique_id=1404874091]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125, 45, 0)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainFloor/Walls/Wall8" unique_id=460640666]
+mesh = SubResource("BoxMesh_7x35k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainFloor/Walls/Wall8" unique_id=1708296454]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MainLobbyLight" type="OmniLight3D" parent="MainFloor" unique_id=239463676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="MainLobbyLight2" type="OmniLight3D" parent="MainFloor" unique_id=580843796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1592, 6.77681, -1.30189)
+light_color = Color(0.207843, 0.690196, 0.509804, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 20.0
+
+[node name="MainLobbyLight5" type="OmniLight3D" parent="MainFloor" unique_id=893921986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0747, 7.03252, 22.1222)
+light_color = Color(0.207843, 0.690196, 0.509804, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 20.0
+
+[node name="MainLobbyLight3" type="OmniLight3D" parent="MainFloor" unique_id=1162209968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.2313, 27.1765, 20.8903)
+light_color = Color(0.207843, 0.690196, 0.509804, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 20.0
+
+[node name="MainLobbyLight4" type="OmniLight3D" parent="MainFloor" unique_id=1666038879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1549, 27.1765, 12.3921)
+light_color = Color(0.207843, 0.690196, 0.509804, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 20.0
+
+[node name="MazeSelectionFloor" type="Node3D" parent="." unique_id=299539694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="P4 -> Lobby Main Room" parent="MazeSelectionFloor" unique_id=1934116842 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.25, 20)
+
+[node name="Portal3D" parent="MazeSelectionFloor/P4 -> Lobby Main Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../MainFloor/Real Lab/P3 -> Maze Selection/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MazeSelectionFloor/P4 -> Lobby Main Room" unique_id=1751423989]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 0)
+visible = false
+layers = 31
+light_energy = 8.0
+light_indirect_energy = 16.0
+shadow_caster_mask = 4293918751
+spot_range = 25.0
+spot_angle = 80.0
+spot_angle_attenuation = 0.267944
+
+[node name="Label3D" type="Label3D" parent="MazeSelectionFloor/P4 -> Lobby Main Room" unique_id=824034622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="Wall6" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=482103589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Wall6" unique_id=153773698]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Wall6" unique_id=1427317216]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=150031528]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Wall7" unique_id=184171663]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Wall7" unique_id=1378393965]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=1328403232]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Wall8" unique_id=1580977456]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Wall8" unique_id=1373089604]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall9" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=1248084918]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Wall9" unique_id=781349059]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Wall9" unique_id=1170046946]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="MazeSelectionFloor" unique_id=1382631978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="MazeSelectionLight2" type="OmniLight3D" parent="MazeSelectionFloor" unique_id=1289890622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, 10)
+light_energy = 4.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="MazeSelectionLight3" type="OmniLight3D" parent="MazeSelectionFloor" unique_id=1869586014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, -10)
+light_energy = 4.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="MazeSelectionLight4" type="OmniLight3D" parent="MazeSelectionFloor" unique_id=244832728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, -10)
+light_energy = 4.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="MazeSelectionLight5" type="OmniLight3D" parent="MazeSelectionFloor" unique_id=1277318401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 10)
+light_energy = 4.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=1941986612]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Floor" unique_id=429779597]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Floor" unique_id=313242577]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=1959475893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/Ceil" unique_id=1312545832]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/Ceil" unique_id=922624518]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Seed" type="Node3D" parent="MazeSelectionFloor" unique_id=1828168425]
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, -7.5, 0, 7.5)
+
+[node name="SeedSelector" parent="MazeSelectionFloor/Seed" unique_id=1817707379 instance=ExtResource("6_u1smo")]
+
+[node name="Difficulty" type="Node3D" parent="MazeSelectionFloor" unique_id=1022127253]
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, -15, 0, -10)
+
+[node name="DifficultySelectionner" parent="MazeSelectionFloor/Difficulty" unique_id=1735439052 instance=ExtResource("7_pdx53")]
+
+[node name="Size" type="Node3D" parent="MazeSelectionFloor" unique_id=384783200]
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, 0, 0, 0)
+
+[node name="SizeSelector" parent="MazeSelectionFloor/Size" unique_id=1485655248 instance=ExtResource("7_d1p01")]
+
+[node name="Algo" type="Node3D" parent="MazeSelectionFloor" unique_id=1464854178]
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, 15, 0, -10)
+
+[node name="AlgoSelector" parent="MazeSelectionFloor/Algo" unique_id=561581714 instance=ExtResource("9_4of2y")]
+
+[node name="BeginId" type="Node3D" parent="MazeSelectionFloor" unique_id=56314848]
+transform = Transform3D(0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, 7.5, 0, 7.5)
+
+[node name="BeginIDSelector" parent="MazeSelectionFloor/BeginId" unique_id=1922544265 instance=ExtResource("10_f5ty6")]
+
+[node name="obstacle5" type="StaticBody3D" parent="MazeSelectionFloor" unique_id=446562243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MazeSelectionFloor/obstacle5" unique_id=2136224486]
+mesh = SubResource("BoxMesh_dcxnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeSelectionFloor/obstacle5" unique_id=753504548]
+shape = SubResource("ConcavePolygonShape3D_wkq0h")
+
+[node name="FakePortal" parent="MazeSelectionFloor" unique_id=7416819 instance=ExtResource("12_iojra")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.25, 0)
+
+[node name="Label3D" type="Label3D" parent="MazeSelectionFloor/FakePortal" unique_id=947842025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Enter the Maze !"
+
+[node name="Hologram" type="Node3D" parent="MazeSelectionFloor" unique_id=297489415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12.5)
+
+[node name="Hologram" type="Node3D" parent="MazeSelectionFloor/Hologram" unique_id=834362333]
+
+[node name="RuneUnlockedRoom" type="Node3D" parent="." unique_id=1397951010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -50)
+
+[node name="Pedestals" type="Node3D" parent="RuneUnlockedRoom" unique_id=987978576]
+
+[node name="Wall6" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=785832613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Wall6" unique_id=1330023207]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Wall6" unique_id=1195185276]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="RuneUnlockedRoom/Wall6" unique_id=1602022047]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 10, 0, -0.16)
+texture = ExtResource("13_y5vlq")
+
+[node name="Sprite3D2" type="Sprite3D" parent="RuneUnlockedRoom/Wall6" unique_id=751980676]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, -10, 0, -0.16)
+texture = ExtResource("14_y0rwf")
+
+[node name="Wall7" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=447557750]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Wall7" unique_id=846202851]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Wall7" unique_id=503222683]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=1263952265]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Wall8" unique_id=626012827]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Wall8" unique_id=1624055364]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="RuneUnlockedRoom/Wall8" unique_id=2078163070]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, -10, 0, -0.16)
+texture = ExtResource("15_y0rwf")
+
+[node name="Sprite3D2" type="Sprite3D" parent="RuneUnlockedRoom/Wall8" unique_id=2114302598]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 10, 0, -0.16)
+texture = ExtResource("6_cdc4y")
+
+[node name="Wall9" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=1390839090]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Wall9" unique_id=265880829]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Wall9" unique_id=1739431631]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="RuneUnlockedRoom/Wall9" unique_id=1629727641]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0.16)
+texture = ExtResource("6_nv4q3")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="RuneUnlockedRoom" unique_id=189261052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=1649364906]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Floor" unique_id=299430265]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Floor" unique_id=649108175]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="RuneUnlockedRoom" unique_id=1991915057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RuneUnlockedRoom/Ceil" unique_id=687626264]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneUnlockedRoom/Ceil" unique_id=810000524]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P11 -> Lobby Main Room" parent="RuneUnlockedRoom" unique_id=1382849783 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.25, 0)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P11 -> Lobby Main Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../MainFloor/P9 -> Runes Unlock/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P11 -> Lobby Main Room" unique_id=861378833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="P13 -> Normal Unlock" parent="RuneUnlockedRoom" unique_id=785145989 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 1.25, 20)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P13 -> Normal Unlock" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../NormalRuneUnlock/P14 -> Return to Unlock Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P13 -> Normal Unlock" unique_id=928271422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Unlock Normal Runes"
+
+[node name="P15 ->Fire Unlock" parent="RuneUnlockedRoom" unique_id=653815020 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 1.25, 20)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P15 ->Fire Unlock" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../FireRuneUnlock/P16 -> Return to Unlock Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P15 ->Fire Unlock" unique_id=829421715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Unlock Fire Runes"
+
+[node name="P17 -> Plant Unlock" parent="RuneUnlockedRoom" unique_id=1913887185 instance=ExtResource("5_4of2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.25, -20)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P17 -> Plant Unlock" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../PlantRuneUnlock/P18 -> Return to Unlock Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P17 -> Plant Unlock" unique_id=720387215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Unlock Plant Runes"
+
+[node name="P19 -> Electic Unlock" parent="RuneUnlockedRoom" unique_id=1307899340 instance=ExtResource("5_4of2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.25, -20)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P19 -> Electic Unlock" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../ElectricRuneUnlock/P20 -> Return to Unlock Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P19 -> Electic Unlock" unique_id=1924837874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Unlock Electric Runes"
+
+[node name="P21 -> More Runes" parent="RuneUnlockedRoom" unique_id=166692481 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 1.25, 0)
+
+[node name="Portal3D" parent="RuneUnlockedRoom/P21 -> More Runes" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../MoreRuneUnlock/P22 -> Return To Unlock Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Collider" parent="RuneUnlockedRoom/P21 -> More Runes/Portal3D/TeleportArea" index="0"]
+shape = SubResource("BoxShape3D_iojra")
+
+[node name="Label3D" type="Label3D" parent="RuneUnlockedRoom/P21 -> More Runes" unique_id=434229925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Other Rune Types"
+
+[node name="NormalRuneUnlock" type="Node3D" parent="." unique_id=1735450247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -100)
+
+[node name="Pedestals" type="Node3D" parent="NormalRuneUnlock" unique_id=3323750]
+
+[node name="Wall6" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=1256161656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Wall6" unique_id=1971350335]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Wall6" unique_id=867831091]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="NormalRuneUnlock/Wall6" unique_id=2094556795]
+transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 0, 0, -0.16)
+texture = ExtResource("13_y5vlq")
+
+[node name="Wall7" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=881376005]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Wall7" unique_id=1409335696]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Wall7" unique_id=1247402491]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=1116790971]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Wall8" unique_id=651164187]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Wall8" unique_id=1776217063]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall9" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=683325703]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Wall9" unique_id=241895688]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Wall9" unique_id=942945944]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="NormalRuneUnlock" unique_id=31581503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=107142019]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Floor" unique_id=677265168]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Floor" unique_id=1159311691]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="NormalRuneUnlock" unique_id=17777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NormalRuneUnlock/Ceil" unique_id=1592027236]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NormalRuneUnlock/Ceil" unique_id=1994738554]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P14 -> Return to Unlock Room" parent="NormalRuneUnlock" unique_id=291311787 instance=ExtResource("5_4of2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -20)
+
+[node name="Portal3D" parent="NormalRuneUnlock/P14 -> Return to Unlock Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P13 -> Normal Unlock/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="NormalRuneUnlock/P14 -> Return to Unlock Room" unique_id=273006898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="FireRuneUnlock" type="Node3D" parent="." unique_id=1551787436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -100)
+
+[node name="Pedestals" type="Node3D" parent="FireRuneUnlock" unique_id=1074347207]
+
+[node name="Wall6" type="StaticBody3D" parent="FireRuneUnlock" unique_id=310089298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Wall6" unique_id=729356272]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Wall6" unique_id=122186807]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="FireRuneUnlock/Wall6" unique_id=1040140911]
+transform = Transform3D(-10, 0, -1.50996e-06, 0, 10, 0, 1.50996e-06, 0, -10, 0, 0, -1.16)
+texture = ExtResource("14_y0rwf")
+
+[node name="Wall7" type="StaticBody3D" parent="FireRuneUnlock" unique_id=442788920]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Wall7" unique_id=1853356775]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Wall7" unique_id=1928274099]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="FireRuneUnlock" unique_id=629772059]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Wall8" unique_id=942990892]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Wall8" unique_id=1548913107]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall9" type="StaticBody3D" parent="FireRuneUnlock" unique_id=374998304]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Wall9" unique_id=969988668]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Wall9" unique_id=487909065]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="FireRuneUnlock" unique_id=2095970689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="FireRuneUnlock" unique_id=198361479]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Floor" unique_id=1216921943]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Floor" unique_id=274572709]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="FireRuneUnlock" unique_id=1998093166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireRuneUnlock/Ceil" unique_id=140370123]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireRuneUnlock/Ceil" unique_id=1821091863]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P16 -> Return to Unlock Room" parent="FireRuneUnlock" unique_id=1745805500 instance=ExtResource("5_4of2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -20)
+
+[node name="Portal3D" parent="FireRuneUnlock/P16 -> Return to Unlock Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P15 ->Fire Unlock/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="FireRuneUnlock/P16 -> Return to Unlock Room" unique_id=1246480183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="PlantRuneUnlock" type="Node3D" parent="." unique_id=1282253553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -200)
+
+[node name="Pedestals" type="Node3D" parent="PlantRuneUnlock" unique_id=681414126]
+
+[node name="Wall6" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=1543763323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Wall6" unique_id=803888502]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Wall6" unique_id=1948806494]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=1748749750]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Wall7" unique_id=1686205714]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Wall7" unique_id=1329234362]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=2094484702]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Wall8" unique_id=1597706452]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Wall8" unique_id=791840314]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="PlantRuneUnlock/Wall8" unique_id=91716142]
+transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 0, 0, -0.16)
+texture = ExtResource("15_y0rwf")
+
+[node name="Wall9" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=1410048929]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Wall9" unique_id=860260521]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Wall9" unique_id=1123586359]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="PlantRuneUnlock" unique_id=587237146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=1889229458]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Floor" unique_id=625535872]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Floor" unique_id=2093176814]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="PlantRuneUnlock" unique_id=338659354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlantRuneUnlock/Ceil" unique_id=1951806539]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlantRuneUnlock/Ceil" unique_id=1494152992]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P18 -> Return to Unlock Room" parent="PlantRuneUnlock" unique_id=894734571 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.25, 20)
+
+[node name="Portal3D" parent="PlantRuneUnlock/P18 -> Return to Unlock Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P17 -> Plant Unlock/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="PlantRuneUnlock/P18 -> Return to Unlock Room" unique_id=1866796877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="ElectricRuneUnlock" type="Node3D" parent="." unique_id=1589218573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -200)
+
+[node name="Pedestals" type="Node3D" parent="ElectricRuneUnlock" unique_id=126247099]
+
+[node name="Wall6" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=2095570109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Wall6" unique_id=1558277146]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Wall6" unique_id=258556640]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=658046455]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Wall7" unique_id=60592306]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Wall7" unique_id=1360419419]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=1400793575]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Wall8" unique_id=1528518466]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Wall8" unique_id=1839202320]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Sprite3D" type="Sprite3D" parent="ElectricRuneUnlock/Wall8" unique_id=525777558]
+transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 0, 0, -0.16)
+texture = ExtResource("6_cdc4y")
+
+[node name="Wall9" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=404541368]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Wall9" unique_id=561671565]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Wall9" unique_id=1611685837]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="ElectricRuneUnlock" unique_id=321371195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=1995833182]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Floor" unique_id=1807838143]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Floor" unique_id=335438371]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="ElectricRuneUnlock" unique_id=1773527443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ElectricRuneUnlock/Ceil" unique_id=1834069400]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElectricRuneUnlock/Ceil" unique_id=403641183]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P20 -> Return to Unlock Room" parent="ElectricRuneUnlock" unique_id=288100004 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.25, 20)
+
+[node name="Portal3D" parent="ElectricRuneUnlock/P20 -> Return to Unlock Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P19 -> Electic Unlock/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="ElectricRuneUnlock/P20 -> Return to Unlock Room" unique_id=363212993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="MoreRuneUnlock" type="Node3D" parent="." unique_id=1335625177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -150)
+
+[node name="Wall6" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=1524548845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Wall6" unique_id=536443480]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Wall6" unique_id=1551119520]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=2087910166]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Wall7" unique_id=338688596]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Wall7" unique_id=1416633568]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=971707300]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Wall8" unique_id=1256826658]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Wall8" unique_id=201012727]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall9" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=1577153466]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Wall9" unique_id=564043207]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Wall9" unique_id=1480147432]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="MoreRuneUnlock" unique_id=257652834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=1440282532]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Floor" unique_id=70065242]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Floor" unique_id=1470821008]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="MoreRuneUnlock" unique_id=946713571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoreRuneUnlock/Ceil" unique_id=2028638994]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoreRuneUnlock/Ceil" unique_id=1487334386]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P22 -> Return To Unlock Room" parent="MoreRuneUnlock" unique_id=1284162059 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.25, 0)
+
+[node name="Portal3D" parent="MoreRuneUnlock/P22 -> Return To Unlock Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../RuneUnlockedRoom/P21 -> More Runes/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="MoreRuneUnlock/P22 -> Return To Unlock Room" unique_id=556424176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="HealthComponentUpgradeRoom" type="Node3D" parent="." unique_id=1193270479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 50)
+
+[node name="Wall6" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=684635793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Wall6" unique_id=432190082]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Wall6" unique_id=875793853]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall7" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=201182501]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Wall7" unique_id=1019578375]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Wall7" unique_id=1466359519]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall8" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=72995483]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 15, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Wall8" unique_id=1252690399]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Wall8" unique_id=279337]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="Wall9" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=203908556]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 15, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Wall9" unique_id=1362526161]
+mesh = SubResource("BoxMesh_6728e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Wall9" unique_id=92833882]
+shape = SubResource("ConcavePolygonShape3D_8d4em")
+
+[node name="MazeSelectionLight" type="OmniLight3D" parent="HealthComponentUpgradeRoom" unique_id=11057812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=1861709536]
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Floor" unique_id=195348424]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Floor" unique_id=1460460072]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="Ceil" type="StaticBody3D" parent="HealthComponentUpgradeRoom" unique_id=1882089676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthComponentUpgradeRoom/Ceil" unique_id=36521330]
+mesh = SubResource("BoxMesh_wehoa")
+skeleton = NodePath("../../../MainFloor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealthComponentUpgradeRoom/Ceil" unique_id=391871113]
+shape = SubResource("ConcavePolygonShape3D_6728e")
+
+[node name="P12 -> Lobby Main Room" parent="HealthComponentUpgradeRoom" unique_id=2029699595 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.25, 0)
+
+[node name="Portal3D" parent="HealthComponentUpgradeRoom/P12 -> Lobby Main Room" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+exit_portal = NodePath("../../../MainFloor/P10 -> Health Component Upgrades Room/Portal3D")
+player_camera = NodePath("../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="HealthComponentUpgradeRoom/P12 -> Lobby Main Room" unique_id=551624137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1060061652]
+navigation_mesh = SubResource("NavigationMesh_br7h5")
+
+[node name="TrainingFloor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1648008391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+collision_layer = 17
+collision_mask = 31
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor" unique_id=2015395749]
+mesh = SubResource("BoxMesh_wehoa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor" unique_id=2106823590]
+shape = SubResource("ConcavePolygonShape3D_7x35k")
+
+[node name="P2 -> Main Lobby" parent="NavigationRegion3D/TrainingFloor" unique_id=480626375 instance=ExtResource("5_4of2y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.5, 1.29, 15)
+
+[node name="Portal3D" parent="NavigationRegion3D/TrainingFloor/P2 -> Main Lobby" index="0" node_paths=PackedStringArray("exit_portal", "player_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.295662)
+exit_portal = NodePath("../../../../MainFloor/P1 -> Fight Room/Portal3D")
+player_camera = NodePath("../../../../Player/Head/Camera3D")
+view_direction = 1
+teleport_direction = 0
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/TrainingFloor/P2 -> Main Lobby" unique_id=816550000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25219, 0.308487)
+text = "Return to Lobby"
+
+[node name="obstacle" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor" unique_id=313366179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.859699, 0.598289, 8.7731)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/obstacle" unique_id=1005651598]
+mesh = SubResource("BoxMesh_dcxnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/obstacle" unique_id=258214389]
+shape = SubResource("ConcavePolygonShape3D_wkq0h")
+
+[node name="obstacle2" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor" unique_id=1864494379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.143, 0.598289, 8.7731)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/obstacle2" unique_id=1860881498]
+mesh = SubResource("BoxMesh_dcxnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/obstacle2" unique_id=358021471]
+shape = SubResource("ConcavePolygonShape3D_wkq0h")
+
+[node name="obstacle3" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor" unique_id=338313291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2522, 0.598289, 8.7731)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/obstacle3" unique_id=628731421]
+mesh = SubResource("BoxMesh_dcxnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/obstacle3" unique_id=811467019]
+shape = SubResource("ConcavePolygonShape3D_wkq0h")
+
+[node name="obstacle4" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor" unique_id=152499270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1981, 2.73489, 8.7731)
+collision_layer = 33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/obstacle4" unique_id=1403306675]
+material_override = ExtResource("6_yr8w2")
+mesh = SubResource("BoxMesh_dcxnu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/obstacle4" unique_id=403856006]
+shape = SubResource("ConcavePolygonShape3D_wkq0h")
+
+[node name="Walls" type="Node3D" parent="NavigationRegion3D/TrainingFloor" unique_id=225759366]
+
+[node name="Wall5" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor/Walls" unique_id=1563424599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall5" unique_id=2139029731]
+mesh = SubResource("BoxMesh_wkq0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall5" unique_id=844020631]
+shape = SubResource("ConcavePolygonShape3D_267vg")
+
+[node name="Wall6" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor/Walls" unique_id=1107368549]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 10, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall6" unique_id=984818797]
+mesh = SubResource("BoxMesh_wkq0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall6" unique_id=1604022856]
+shape = SubResource("ConcavePolygonShape3D_267vg")
+
+[node name="Wall7" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor/Walls" unique_id=362121301]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 10, -25)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall7" unique_id=784980169]
+mesh = SubResource("BoxMesh_wkq0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall7" unique_id=427089161]
+shape = SubResource("ConcavePolygonShape3D_267vg")
+
+[node name="Wall8" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor/Walls" unique_id=1327734659]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 10, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall8" unique_id=1230063736]
+mesh = SubResource("BoxMesh_wkq0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/Walls/Wall8" unique_id=1460306014]
+shape = SubResource("ConcavePolygonShape3D_267vg")
+
+[node name="TrainningFloorLight" type="OmniLight3D" parent="NavigationRegion3D/TrainingFloor" unique_id=404428917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+light_energy = 8.0
+light_bake_mode = 1
+light_cull_mask = 4293918721
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 35.0
+
+[node name="Columns" type="Node3D" parent="NavigationRegion3D/TrainingFloor" unique_id=2143064273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="Column" type="StaticBody3D" parent="NavigationRegion3D/TrainingFloor/Columns" unique_id=330997217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/TrainingFloor/Columns/Column" unique_id=774279657]
+mesh = SubResource("CylinderMesh_wkq0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TrainingFloor/Columns/Column" unique_id=1421624258]
+shape = SubResource("CylinderShape3D_6728e")
+
+[connection signal="seed_changed" from="MazeSelectionFloor/Seed/SeedSelector" to="." method="_on_seed_selector_seed_changed"]
+[connection signal="difficulty_changed" from="MazeSelectionFloor/Difficulty/DifficultySelectionner" to="." method="_on_difficulty_selectionner_difficulty_changed"]
+[connection signal="size_changed" from="MazeSelectionFloor/Size/SizeSelector" to="." method="_on_size_selector_size_changed"]
+[connection signal="algo_changed" from="MazeSelectionFloor/Algo/AlgoSelector" to="." method="_on_algo_selector_algo_changed"]
+[connection signal="fake_portal_entered" from="MazeSelectionFloor/FakePortal" to="." method="_on_fake_portal_fake_portal_entered"]
+
+[editable path="Player"]
+[editable path="MainFloor/P1 -> Fight Room"]
+[editable path="MainFloor/P9 -> Runes Unlock"]
+[editable path="MainFloor/P10 -> Health Component Upgrades Room"]
+[editable path="MainFloor/Real Lab/P3 -> Maze Selection"]
+[editable path="MainFloor/Debug Lab/P5 -> Lab 3x3x3 Entrance"]
+[editable path="MainFloor/Debug Lab/P6 -> Main Room"]
+[editable path="MainFloor/Debug Lab/P7 -> Return to Lobby"]
+[editable path="MainFloor/Debug Lab/P8 -> LastRoom 3x3x3"]
+[editable path="MazeSelectionFloor/P4 -> Lobby Main Room"]
+[editable path="RuneUnlockedRoom/P11 -> Lobby Main Room"]
+[editable path="RuneUnlockedRoom/P13 -> Normal Unlock"]
+[editable path="RuneUnlockedRoom/P15 ->Fire Unlock"]
+[editable path="RuneUnlockedRoom/P17 -> Plant Unlock"]
+[editable path="RuneUnlockedRoom/P19 -> Electic Unlock"]
+[editable path="RuneUnlockedRoom/P21 -> More Runes"]
+[editable path="NormalRuneUnlock/P14 -> Return to Unlock Room"]
+[editable path="FireRuneUnlock/P16 -> Return to Unlock Room"]
+[editable path="PlantRuneUnlock/P18 -> Return to Unlock Room"]
+[editable path="ElectricRuneUnlock/P20 -> Return to Unlock Room"]
+[editable path="MoreRuneUnlock/P22 -> Return To Unlock Room"]
+[editable path="HealthComponentUpgradeRoom/P12 -> Lobby Main Room"]
+[editable path="NavigationRegion3D/TrainingFloor/P2 -> Main Lobby"]

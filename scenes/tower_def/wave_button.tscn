@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://mruysvlrjqns"]
+
+[ext_resource type="Script" uid="uid://3ryjyiejocav" path="res://scripts/tower_def/wave_button.gd" id="1_6p8ut"]
+[ext_resource type="Material" uid="uid://dc0wnhgk2gfc4" path="res://materials/creatures/health_bar_color.tres" id="2_fwna8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwna8"]
+albedo_color = Color(1, 0.5372549, 0.24313726, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3n6tq"]
+material = SubResource("StandardMaterial3D_fwna8")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g7qss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blind"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.47058824)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yv308"]
+material = SubResource("StandardMaterial3D_blind")
+radius = 0.125
+height = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_3n6tq"]
+material = ExtResource("2_fwna8")
+size = Vector2(0.5, 0.075)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwna8"]
+size = Vector3(0.33154297, 0.65930176, 0.36175537)
+
+[node name="WaveButton" type="CharacterBody3D" unique_id=223125535]
+collision_mask = 8
+script = ExtResource("1_6p8ut")
+
+[node name="HitArea" type="Area3D" parent="." unique_id=530639311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HitArea" unique_id=92071835]
+mesh = SubResource("SphereMesh_3n6tq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=1465988893]
+shape = SubResource("SphereShape3D_g7qss")
+
+[node name="Label3D" type="Label3D" parent="HitArea" unique_id=711913263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3288315, 0)
+billboard = 1
+text = "Hit Me !"
+
+[node name="PlayerCatcher" type="MeshInstance3D" parent="HitArea" unique_id=463601901]
+mesh = SubResource("SphereMesh_yv308")
+skeleton = NodePath("../..")
+
+[node name="HealthBar" type="MeshInstance3D" parent="." unique_id=1486124875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9868001, 0)
+mesh = SubResource("QuadMesh_3n6tq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1287552499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0039837062, -0.057000488, -0.014039755)
+shape = SubResource("BoxShape3D_fwna8")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw6sr7epa8tcc"]
+
+[ext_resource type="Script" uid="uid://clqqnfatqnink" path="res://scripts/fight/runes/plant_rune_1.gd" id="1_ox25v"]
+
+[node name="PlantRune1" type="Node3D"]
+script = ExtResource("1_ox25v")

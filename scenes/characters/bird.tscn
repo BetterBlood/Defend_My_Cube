@@ -1,0 +1,183 @@
+[gd_scene load_steps=21 format=3 uid="uid://drnl2ytrefjba"]
+
+[ext_resource type="Script" uid="uid://fqro76tg5qme" path="res://scripts/characters/bird.gd" id="1_2sltb"]
+[ext_resource type="Material" uid="uid://cluaqb8rwmdm8" path="res://materials/shaders/bird_on_fire.tres" id="2_41i38"]
+[ext_resource type="Material" uid="uid://dtrgxefu8yt4f" path="res://materials/creatures/bird_default.tres" id="2_dwjge"]
+[ext_resource type="Material" uid="uid://dc0wnhgk2gfc4" path="res://materials/creatures/health_bar_color.tres" id="5_aoeho"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_142vc"]
+resource_local_to_scene = true
+material = ExtResource("2_dwjge")
+top_radius = 0.0
+bottom_radius = 0.25
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dwjge"]
+resource_local_to_scene = true
+material = ExtResource("2_41i38")
+top_radius = 0.01
+bottom_radius = 0.251
+height = 1.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwjge"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_aoeho"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_dwjge")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pg0rp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dwjge"]
+material = SubResource("StandardMaterial3D_pg0rp")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45abh"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_h0u2q"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_45abh")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qw46i"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_142vc"]
+radius = 14.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aoeho"]
+radius = 1.75227
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41i38"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_142vc"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_41i38")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwjge"]
+radius = 25.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_45abh"]
+radius = 25.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_45abh"]
+resource_local_to_scene = true
+material = ExtResource("5_aoeho")
+size = Vector2(0.5, 0.08)
+
+[node name="Bird" type="CharacterBody3D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_2sltb")
+
+[node name="RayCasts" type="Node3D" parent="."]
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_142vc")
+skeleton = NodePath("../..")
+
+[node name="Effect" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_dwjge")
+skeleton = NodePath("../..")
+
+[node name="Eye" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.983105, 0.183042, 0, -0.183042, 0.983105, -0.0781064, 0.0884753, 0.127509)
+mesh = SubResource("SphereMesh_aoeho")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes/Eye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00806913, 0.0451619)
+mesh = SubResource("SphereMesh_dwjge")
+
+[node name="Eye2" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.983105, 0.183042, 0, -0.183042, 0.983105, 0.0690332, 0.0884753, 0.127509)
+mesh = SubResource("SphereMesh_h0u2q")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes/Eye2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00489735, 0.0460033)
+mesh = SubResource("SphereMesh_dwjge")
+
+[node name="Body" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.0970857)
+shape = SubResource("CapsuleShape3D_qw46i")
+
+[node name="CohesionVision" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CohesionVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.57741)
+shape = SubResource("SphereShape3D_142vc")
+debug_color = Color(0.335968, 0.613757, 0.298564, 0.42)
+
+[node name="AvoidanceVision" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AvoidanceVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+shape = SubResource("SphereShape3D_aoeho")
+debug_color = Color(0.971789, 0.130081, 0.275074, 0.42)
+
+[node name="Front" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Right" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="TypeVisualIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.189691)
+mesh = SubResource("SphereMesh_142vc")
+skeleton = NodePath("../Front")
+
+[node name="CreatureDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CreatureDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+shape = SubResource("SphereShape3D_dwjge")
+debug_color = Color(0.734033, 0.461491, 0.259143, 0.42)
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+shape = SubResource("SphereShape3D_45abh")
+debug_color = Color(0.733333, 0.462745, 0.258824, 0.419608)
+
+[node name="HealthBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340195, 0)
+mesh = SubResource("QuadMesh_45abh")
+skeleton = NodePath("")
+
+[connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]
+[connection signal="area_entered" from="CohesionVision" to="." method="_on_cohesion_vision_area_entered"]
+[connection signal="area_exited" from="CohesionVision" to="." method="_on_cohesion_vision_area_exited"]
+[connection signal="area_entered" from="AvoidanceVision" to="." method="_on_avoidance_vision_area_entered"]
+[connection signal="area_exited" from="AvoidanceVision" to="." method="_on_avoidance_vision_area_exited"]
+[connection signal="area_entered" from="CreatureDetection" to="." method="_on_creature_detection_area_entered"]
+[connection signal="area_exited" from="CreatureDetection" to="." method="_on_creature_detection_area_exited"]
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]

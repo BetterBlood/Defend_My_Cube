@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://37q0cue3osg2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ely38"]
+noise_type = 3
+frequency = 0.2574
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lf30x"]
+noise = SubResource("FastNoiseLite_ely38")
+seamless = true
+
+[resource]
+albedo_color = Color(0.517647, 1, 1, 1)
+albedo_texture = SubResource("NoiseTexture2D_lf30x")
+metallic = 0.55
+emission_enabled = true
+emission = Color(0.517647, 1, 1, 1)
+emission_energy_multiplier = 1.33

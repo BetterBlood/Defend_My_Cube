@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://76sfcxew2r2r"]
+
+[ext_resource type="Script" uid="uid://wsep8x1xlsa7" path="res://scripts/fight/runes/fire_rune_1.gd" id="1_hks8q"]
+
+[node name="FireRune1" type="Node3D"]
+script = ExtResource("1_hks8q")

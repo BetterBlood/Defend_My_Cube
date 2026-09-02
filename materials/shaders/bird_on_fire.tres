@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cluaqb8rwmdm8"]
+
+[ext_resource type="Shader" uid="uid://cv4002jxmab77" path="res://materials/shaders/dissolve.gdshader" id="1_n4pc5"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_n4pc5")
+shader_parameter/baseColor = Color(0.235294, 0.372549, 0.517647, 1)
+shader_parameter/dissolveSlider = 0.5
+shader_parameter/dissolveNoiseScale = 8.0
+shader_parameter/edgeNoiseScale = -6.0
+shader_parameter/edgesThickness = 0.3
+shader_parameter/edgeColor = Color(0.858824, 0, 0, 0.870588)
+shader_parameter/edgeEmissionSlider = 10.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 5.0
+shader_parameter/animation_intensity = 0.5

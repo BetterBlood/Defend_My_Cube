@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmfslxd1x0gy2"]
+
+[ext_resource type="Script" uid="uid://dby7my0bd6pka" path="res://scripts/fight/runes/electric_rune_1.gd" id="1_a6riy"]
+
+[node name="ElectricRune1" type="Node3D"]
+script = ExtResource("1_a6riy")

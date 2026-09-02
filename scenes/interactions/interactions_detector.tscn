@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://beher81xtavyl"]
+
+[ext_resource type="Script" uid="uid://duqdm15li6un3" path="res://scripts/interactions/interactionsDetector.gd" id="1_uf5vd"]
+
+[node name="InteractionsDetector" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_uf5vd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

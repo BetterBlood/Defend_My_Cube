@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3j46cwf2hwft"]
+
+[ext_resource type="Script" uid="uid://c8uurnyg2xsuk" path="res://scripts/decorations/xp.gd" id="1_xmasp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmasp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rmfay"]
+material = SubResource("StandardMaterial3D_xmasp")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhwjd"]
+height = 5.0
+radius = 5.0
+
+[node name="XP" type="Node3D"]
+script = ExtResource("1_xmasp")
+metadata/_custom_type_script = "uid://c40yxgjle2l7x"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_rmfay")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CylinderShape3D_hhwjd")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

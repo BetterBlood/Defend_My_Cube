@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://hwso6jido6ld"]
+
+[ext_resource type="Script" uid="uid://ck2i75gorqu1b" path="res://scripts/decorations/loot_orbe_rune.gd" id="1_euny3"]
+[ext_resource type="Script" uid="uid://duqdm15li6un3" path="res://scripts/interactions/interactionsDetector.gd" id="2_2gv2w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlvcc"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.216929, 0.283495, 0.666846, 0.772549)
+metallic = 0.25
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.215686, 0.282353, 0.666667, 1)
+emission_energy_multiplier = 1.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_apcyj"]
+material = SubResource("StandardMaterial3D_rlvcc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mjv3"]
+size = Vector3(7.37225, 3.52454, 6.55702)
+
+[node name="LootOrbeRune" type="Node3D"]
+script = ExtResource("1_euny3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_apcyj")
+
+[node name="InteractionsDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_2gv2w")
+metadata/_custom_type_script = "uid://duqdm15li6un3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionsDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29935, 0)
+shape = SubResource("BoxShape3D_2mjv3")

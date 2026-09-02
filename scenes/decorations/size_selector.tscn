@@ -1,0 +1,151 @@
+[gd_scene load_steps=10 format=3 uid="uid://gxh7el742n46"]
+
+[ext_resource type="Script" uid="uid://cnjuw6ohmfp4y" path="res://scripts/decorations/size_selector.gd" id="1_i2f5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lafbe"]
+albedo_color = Color(0.368506, 0.513769, 0.788201, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aje5h"]
+material = SubResource("StandardMaterial3D_lafbe")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2j3si"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2f5o"]
+albedo_color = Color(0.368627, 0.513726, 0.788235, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7hgro"]
+material = SubResource("StandardMaterial3D_i2f5o")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aje5h"]
+albedo_color = Color(0.368627, 0.513726, 0.788235, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e80x8"]
+material = SubResource("StandardMaterial3D_aje5h")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dt34i"]
+
+[node name="SizeSelector" type="Node3D"]
+script = ExtResource("1_i2f5o")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+billboard = 1
+text = "Size"
+
+[node name="More" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="More"]
+mesh = SubResource("SphereMesh_aje5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="More"]
+shape = SubResource("SphereShape3D_2j3si")
+
+[node name="Label3D" type="Label3D" parent="More"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+billboard = 1
+text = "+"
+
+[node name="Size10" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+visible = false
+
+[node name="Indicator" type="MeshInstance3D" parent="Size10"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size9" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+visible = false
+
+[node name="Indicator" type="MeshInstance3D" parent="Size9"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+
+[node name="Indicator" type="MeshInstance3D" parent="Size8"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+visible = false
+
+[node name="Indicator" type="MeshInstance3D" parent="Size7"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size6"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Label3D" type="Label3D" parent="Size6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+billboard = 1
+text = "6"
+
+[node name="Size5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size5"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size4"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size3"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size2"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Size1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="Size1"]
+mesh = SubResource("SphereMesh_7hgro")
+skeleton = NodePath("")
+
+[node name="Less" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 1)
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Less"]
+mesh = SubResource("SphereMesh_e80x8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Less"]
+shape = SubResource("SphereShape3D_dt34i")
+
+[node name="Label3D" type="Label3D" parent="Less"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+billboard = 1
+text = "-"
+
+[connection signal="area_entered" from="More" to="." method="_on_more_area_entered"]
+[connection signal="area_entered" from="Less" to="." method="_on_less_area_entered"]

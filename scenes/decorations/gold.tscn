@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1la74rgmjvs1"]
+
+[ext_resource type="Script" uid="uid://bypkr6sahoqc7" path="res://scripts/decorations/gold.gd" id="1_3gmps"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gmps"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_josh4"]
+material = SubResource("StandardMaterial3D_3gmps")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0j1gu"]
+height = 5.0
+radius = 5.0
+
+[node name="Gold" type="Node3D"]
+script = ExtResource("1_3gmps")
+metadata/_custom_type_script = "uid://c40yxgjle2l7x"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_josh4")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CylinderShape3D_0j1gu")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

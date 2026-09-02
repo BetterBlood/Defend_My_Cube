@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://yg54ndamnalc"]
+
+[ext_resource type="Script" uid="uid://bcx23wbio37st" path="res://scripts/decorations/main_menu.gd" id="1_3b1u5"]
+[ext_resource type="Texture2D" uid="uid://pneio6dylnwh" path="res://addons/polyrinthe/images/MazeInsideView_normalMode_scale2.PNG" id="1_nl711"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b1u5"]
+texture = ExtResource("1_nl711")
+modulate_color = Color(0.612036, 0.612036, 0.612036, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3wwc"]
+bg_color = Color(0.345646, 0.666641, 0.621584, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_me0qa"]
+bg_color = Color(0.810192, 0.500608, 0.517061, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b1u5"]
+bg_color = Color(0.318291, 0.652123, 0.749298, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl711"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54ofv"]
+bg_color = Color(0.739831, 0.554448, 0.440939, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[node name="MainMenu" type="CanvasLayer" unique_id=1021432107]
+script = ExtResource("1_3b1u5")
+
+[node name="MainPanel" type="Control" parent="." unique_id=278817032]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainPanel" unique_id=932631203]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3b1u5")
+
+[node name="Label" type="Label" parent="MainPanel" unique_id=1731223047]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.5
+offset_top = -298.5
+offset_right = 349.5
+offset_bottom = -161.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Hook My Cube"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel" unique_id=67528143]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -110.0
+offset_right = 138.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="NewGame" type="Button" parent="MainPanel/VBoxContainer" unique_id=1806113355]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Exit")
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_right = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Continue")
+focus_next = NodePath("../Continue")
+focus_previous = NodePath("../Exit")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+text = "New Game"
+
+[node name="Continue" type="Button" parent="MainPanel/VBoxContainer" unique_id=1172654377]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../NewGame")
+focus_neighbor_top = NodePath("../NewGame")
+focus_neighbor_right = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Options")
+focus_next = NodePath("../Options")
+focus_previous = NodePath("../NewGame")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+text = "Continue"
+
+[node name="Options" type="Button" parent="MainPanel/VBoxContainer" unique_id=1819012322]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Continue")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Continue")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+disabled = true
+text = "Options"
+
+[node name="Exit" type="Button" parent="MainPanel/VBoxContainer" unique_id=1575401119]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Options")
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_right = NodePath("../NewGame")
+focus_neighbor_bottom = NodePath("../NewGame")
+focus_next = NodePath("../NewGame")
+focus_previous = NodePath("../Options")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3wwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_me0qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b1u5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl711")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ofv")
+text = "EXIT"
+
+[connection signal="pressed" from="MainPanel/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

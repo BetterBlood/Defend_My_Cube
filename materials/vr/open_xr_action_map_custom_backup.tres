@@ -1,0 +1,179 @@
+[gd_resource type="OpenXRActionMap" format=3 uid="uid://ci76o2brudsne"]
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_1o4lr"]
+resource_name = "trigger"
+localized_name = "Trigger"
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_e7u0j"]
+resource_name = "trigger_click"
+localized_name = "Trigger click"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_6mvoo"]
+resource_name = "trigger_touch"
+localized_name = "Trigger touch"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_hbcsl"]
+resource_name = "grip"
+localized_name = "Grip"
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_e5kud"]
+resource_name = "grip_click"
+localized_name = "Grip click"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_14427"]
+resource_name = "grip_force"
+localized_name = "Grip force"
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_sathj"]
+resource_name = "primary"
+localized_name = "Primary joystick/thumbstick/trackpad"
+action_type = 2
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_bh0da"]
+resource_name = "primary_click"
+localized_name = "Primary joystick/thumbstick/trackpad click"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_pof8n"]
+resource_name = "primary_touch"
+localized_name = "Primary joystick/thumbstick/trackpad touching"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_yw3lv"]
+resource_name = "secondary"
+localized_name = "Secondary joystick/thumbstick/trackpad"
+action_type = 2
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_gffxl"]
+resource_name = "secondary_click"
+localized_name = "Secondary joystick/thumbstick/trackpad click"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_3asmx"]
+resource_name = "secondary_touch"
+localized_name = "Secondary joystick/thumbstick/trackpad touching"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_eqvyn"]
+resource_name = "menu_button"
+localized_name = "Menu button"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_endkx"]
+resource_name = "select_button"
+localized_name = "Select button"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_qwmu6"]
+resource_name = "ax_button"
+localized_name = "A/X button"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_n50x0"]
+resource_name = "ax_touch"
+localized_name = "A/X touching"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_7byjl"]
+resource_name = "by_button"
+localized_name = "B/Y button"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_o0guc"]
+resource_name = "by_touch"
+localized_name = "B/Y touching"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_8cx7q"]
+resource_name = "default_pose"
+localized_name = "Default pose"
+action_type = 3
+toplevel_paths = PackedStringArray("/user/hand/left")
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_xaw3o"]
+resource_name = "aim_pose"
+localized_name = "Aim pose"
+action_type = 3
+toplevel_paths = PackedStringArray("/user/hand/left")
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_nugkb"]
+resource_name = "grip_pose"
+localized_name = "Grip pose"
+action_type = 3
+toplevel_paths = PackedStringArray("/user/hand/left")
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_bvljw"]
+resource_name = "palm_pose"
+localized_name = "Palm pose"
+action_type = 3
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_me3l0"]
+resource_name = "haptic"
+localized_name = "Haptic"
+action_type = 4
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_3cae4"]
+resource_name = "attack"
+localized_name = "Attack"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_bppsf"]
+resource_name = "jump"
+localized_name = "Jump"
+action_type = 0
+toplevel_paths = PackedStringArray("/user/hand/right")
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_6oyek"]
+resource_name = "grapple"
+localized_name = "Grapple"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_ap81v"]
+resource_name = "interact"
+localized_name = "Interact"
+action_type = 0
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_8pd7o"]
+resource_name = "move"
+localized_name = "Move"
+action_type = 2
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_0i2wd"]
+resource_name = "rotate"
+localized_name = "Rotate"
+action_type = 2
+
+[sub_resource type="OpenXRActionSet" id="OpenXRActionSet_e7u0j"]
+resource_name = "Custom Godot XR"
+localized_name = "Custom Godot XR"
+actions = [SubResource("OpenXRAction_1o4lr"), SubResource("OpenXRAction_e7u0j"), SubResource("OpenXRAction_6mvoo"), SubResource("OpenXRAction_hbcsl"), SubResource("OpenXRAction_e5kud"), SubResource("OpenXRAction_14427"), SubResource("OpenXRAction_sathj"), SubResource("OpenXRAction_bh0da"), SubResource("OpenXRAction_pof8n"), SubResource("OpenXRAction_yw3lv"), SubResource("OpenXRAction_gffxl"), SubResource("OpenXRAction_3asmx"), SubResource("OpenXRAction_eqvyn"), SubResource("OpenXRAction_endkx"), SubResource("OpenXRAction_qwmu6"), SubResource("OpenXRAction_n50x0"), SubResource("OpenXRAction_7byjl"), SubResource("OpenXRAction_o0guc"), SubResource("OpenXRAction_8cx7q"), SubResource("OpenXRAction_xaw3o"), SubResource("OpenXRAction_nugkb"), SubResource("OpenXRAction_bvljw"), SubResource("OpenXRAction_me3l0"), SubResource("OpenXRAction_3cae4"), SubResource("OpenXRAction_bppsf"), SubResource("OpenXRAction_6oyek"), SubResource("OpenXRAction_ap81v"), SubResource("OpenXRAction_8pd7o"), SubResource("OpenXRAction_0i2wd")]
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_1o4lr"]
+action = SubResource("OpenXRAction_bppsf")
+binding_path = "/user/hand/right/input/a/click"
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_e7u0j"]
+action = SubResource("OpenXRAction_nugkb")
+binding_path = "/user/hand/left/input/grip/pose"
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_6mvoo"]
+action = SubResource("OpenXRAction_8cx7q")
+binding_path = "/user/hand/left/input/aim/pose"
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_hbcsl"]
+action = SubResource("OpenXRAction_xaw3o")
+binding_path = "/user/hand/left/input/aim/pose"
+
+[sub_resource type="OpenXRInteractionProfile" id="OpenXRInteractionProfile_6mvoo"]
+interaction_profile_path = "/interaction_profiles/oculus/touch_controller"
+bindings = [SubResource("OpenXRIPBinding_1o4lr"), SubResource("OpenXRIPBinding_e7u0j"), SubResource("OpenXRIPBinding_6mvoo"), SubResource("OpenXRIPBinding_hbcsl")]
+
+[sub_resource type="OpenXRInteractionProfile" id="OpenXRInteractionProfile_hbcsl"]
+interaction_profile_path = "/interaction_profiles/meta/touch_plus_controller"
+
+[resource]
+action_sets = [SubResource("OpenXRActionSet_e7u0j")]
+interaction_profiles = [SubResource("OpenXRInteractionProfile_6mvoo"), SubResource("OpenXRInteractionProfile_hbcsl")]

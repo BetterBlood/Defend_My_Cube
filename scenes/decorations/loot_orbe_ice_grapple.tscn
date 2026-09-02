@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cl1jefohqsiyp"]
+
+[ext_resource type="Script" uid="uid://cq6chs24yk5tl" path="res://scripts/decorations/loot_orbe_ice_grapple.gd" id="1_d37il"]
+[ext_resource type="Material" uid="uid://penbwn0i2in" path="res://materials/ice.tres" id="1_p4t22"]
+[ext_resource type="Script" uid="uid://duqdm15li6un3" path="res://scripts/interactions/interactionsDetector.gd" id="2_d37il"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_r02wc"]
+material = ExtResource("1_p4t22")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hc488"]
+radius = 7.0
+
+[node name="LootOrbeIceGrapple" type="Node3D" unique_id=661569737]
+script = ExtResource("1_d37il")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1098006598]
+mesh = SubResource("SphereMesh_r02wc")
+
+[node name="InteractionsDetector" type="Area3D" parent="." unique_id=127085605]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_d37il")
+metadata/_custom_type_script = "uid://duqdm15li6un3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionsDetector" unique_id=1691353805]
+shape = SubResource("SphereShape3D_hc488")

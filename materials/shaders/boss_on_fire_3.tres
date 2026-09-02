@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dd0btsx1p48f8"]
+
+[ext_resource type="Shader" uid="uid://cv4002jxmab77" path="res://materials/shaders/dissolve.gdshader" id="1_5c1av"]
+[ext_resource type="Texture2D" uid="uid://bp20e4diu5rto" path="res://addons/octopus_tentacle/textures/Material_001_baseColor.jpeg" id="2_hib5i"]
+[ext_resource type="Texture2D" uid="uid://drrq8jcamjqqx" path="res://addons/octopus_tentacle/textures/Material_001_normal.png" id="3_urjmp"]
+[ext_resource type="Texture2D" uid="uid://wgivyod1d3f8" path="res://addons/octopus_tentacle/textures/Material_001_metallicRoughness.png" id="4_x7lmc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5c1av")
+shader_parameter/baseColor = Color(0.969055, 0.920848, 0.912144, 0)
+shader_parameter/baseColorTexture = ExtResource("2_hib5i")
+shader_parameter/normalTexture = ExtResource("3_urjmp")
+shader_parameter/roughnessTexture = ExtResource("4_x7lmc")
+shader_parameter/dissolveSlider = 4.75e-08
+shader_parameter/dissolveNoiseScale = 32.0
+shader_parameter/edgeNoiseScale = 0.0
+shader_parameter/edgesThickness = 0.3
+shader_parameter/edgeColor = Color(0.858824, 0, 0, 0.870588)
+shader_parameter/edgeEmissionSlider = 10.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 5.0
+shader_parameter/animation_intensity = 0.52

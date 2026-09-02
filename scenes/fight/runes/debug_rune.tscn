@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wmsb04dxktfy"]
+
+[ext_resource type="Script" uid="uid://6kkxkyiobxjp" path="res://scripts/fight/runes/debug_rune.gd" id="1_d4fu6"]
+
+[node name="DebugRune" type="Node3D"]
+script = ExtResource("1_d4fu6")

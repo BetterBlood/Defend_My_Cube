@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://bwxtl2bygbfxx"]
+
+[ext_resource type="Script" uid="uid://yytfmjhcma02" path="res://scripts/decorations/pause_menu.gd" id="1_p1dbk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioex4"]
+bg_color = Color(0.211765, 0.211765, 0.211765, 0.215686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tdbs"]
+bg_color = Color(0.345646, 0.666641, 0.621584, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfaoi"]
+bg_color = Color(0.810192, 0.500608, 0.517061, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc23v"]
+bg_color = Color(0.318291, 0.652123, 0.749298, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6vxc"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1dbk"]
+bg_color = Color(0.739831, 0.554448, 0.440939, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[node name="PauseMenu" type="Control" unique_id=1550491889]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p1dbk")
+
+[node name="Panel" type="Panel" parent="." unique_id=2065774566]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ioex4")
+
+[node name="Label" type="Label" parent="." unique_id=30275278]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.5
+offset_top = -298.5
+offset_right = 349.5
+offset_bottom = -161.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1124519770]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -110.0
+offset_right = 138.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Continue" type="Button" parent="VBoxContainer" unique_id=2113772287]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../MainMenu")
+focus_next = NodePath("../MainMenu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5tdbs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfaoi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uc23v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g6vxc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p1dbk")
+text = "Continue"
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=507240750]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../MainMenu")
+focus_next = NodePath("../MainMenu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5tdbs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfaoi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uc23v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g6vxc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p1dbk")
+disabled = true
+text = "Options"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer" unique_id=1609506463]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Continue")
+focus_previous = NodePath("../Continue")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.688595, 0.688595, 0.688595, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5tdbs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfaoi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uc23v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g6vxc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p1dbk")
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bseq03jqv66ql"]
+
+[ext_resource type="Script" uid="uid://bjseftj2hvomq" path="res://scripts/fight/projectiles/fire_projectile.gd" id="1_kjbeq"]
+[ext_resource type="Material" uid="uid://cwdgeqkq01psg" path="res://materials/projectiles/fire_projectile.tres" id="2_6f8sn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kjbeq"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kjbeq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cgd1u"]
+material = ExtResource("2_6f8sn")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_30r5t"]
+
+[node name="FireProjectile" type="RigidBody3D"]
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_kjbeq")
+gravity_scale = 0.0
+script = ExtResource("1_kjbeq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kjbeq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_cgd1u")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_30r5t")
+debug_color = Color(0.734445, 0.463386, 0.226078, 0.42)
+
+[node name="TimeToLive" type="Timer" parent="."]
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(0.883495, 0.475407, 2.69532e-06, 1)
+light_energy = 2.0
+light_specular = 16.0
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_caster_mask = 4293918721
+distance_fade_begin = 50.0
+omni_range = 10.0
+omni_attenuation = 0.5

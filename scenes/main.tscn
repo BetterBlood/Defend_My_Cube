@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://dwm3bngj0v645"]
+
+[ext_resource type="Script" uid="uid://bd2njdqs7iukh" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://yg54ndamnalc" path="res://scenes/decorations/main_menu.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://da6ne6ua6jw8v" path="res://scenes/decorations/new_game_menu.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cnbwwgrhxy85i" path="res://scenes/decorations/continue_menu.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://dhnsbp3byv7mx" path="res://scripts/decorations/menus/main_menu_3d.gd" id="6_choun"]
+[ext_resource type="Script" uid="uid://c40e34b3ufyd2" path="res://scripts/decorations/menus/new_game_menu_3d.gd" id="7_ya4ey"]
+[ext_resource type="Script" uid="uid://cp3am5i6dyr7c" path="res://scripts/decorations/menus/continue_menu_3d.gd" id="8_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://b0mq2h4uuahwk" path="res://scenes/characters/player_menu.tscn" id="9_85g3d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_choun"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ya4ey"]
+sky_material = SubResource("ProceduralSkyMaterial_choun")
+
+[sub_resource type="Environment" id="Environment_eb6dy"]
+background_mode = 2
+sky = SubResource("Sky_ya4ey")
+tonemap_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_85g3d"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_choun"]
+viewport_path = NodePath("Viewport2Din3D_Main/Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_choun")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
+
+[sub_resource type="QuadMesh" id="QuadMesh_trceg"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a8y0u"]
+viewport_path = NodePath("Viewport2Din3D_NewGame/Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_a8y0u")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbj1t"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
+
+[sub_resource type="QuadMesh" id="QuadMesh_muem4"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dp3eg"]
+viewport_path = NodePath("Viewport2Din3D_Continue/Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ld40"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_dp3eg")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqmmt"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ya4ey"]
+size = Vector3(1, 0.1, 1)
+
+[node name="Main" type="Node3D" unique_id=1630427447]
+script = ExtResource("1_o5qli")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=818370342]
+environment = SubResource("Environment_eb6dy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1157804582]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainMenu" parent="." unique_id=933718550 instance=ExtResource("2_0wfyh")]
+visible = false
+
+[node name="NewGameMenu" parent="." unique_id=1327707552 instance=ExtResource("3_jyhfs")]
+visible = false
+
+[node name="ContinueMenu" parent="." unique_id=856293605 instance=ExtResource("4_tbgi4")]
+visible = false
+
+[node name="Viewport2Din3D_Main" parent="." unique_id=1053545388 instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.27302718)
+visible = false
+script = ExtResource("6_choun")
+scene = ExtResource("2_0wfyh")
+viewport_size = Vector2(1920, 1080)
+transparent = 1
+scene_properties_keys = PackedStringArray("main_menu.gd")
+
+[node name="Viewport" parent="Viewport2Din3D_Main" index="0"]
+size = Vector2i(1920, 1080)
+
+[node name="Screen" parent="Viewport2Din3D_Main" index="1"]
+mesh = SubResource("QuadMesh_85g3d")
+surface_material_override/0 = SubResource("StandardMaterial3D_ya4ey")
+
+[node name="StaticBody3D" parent="Viewport2Din3D_Main" index="2"]
+viewport_size = Vector2(1920, 1080)
+
+[node name="CollisionShape3D" parent="Viewport2Din3D_Main/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_eb6dy")
+
+[node name="Viewport2Din3D_NewGame" parent="." unique_id=426895768 instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.20738816)
+visible = false
+script = ExtResource("7_ya4ey")
+scene = ExtResource("3_jyhfs")
+viewport_size = Vector2(1920, 1080)
+transparent = 1
+scene_properties_keys = PackedStringArray("new_game_menu.gd")
+
+[node name="Viewport" parent="Viewport2Din3D_NewGame" index="0"]
+size = Vector2i(1920, 1080)
+
+[node name="Screen" parent="Viewport2Din3D_NewGame" index="1"]
+mesh = SubResource("QuadMesh_trceg")
+surface_material_override/0 = SubResource("StandardMaterial3D_jkv2x")
+
+[node name="StaticBody3D" parent="Viewport2Din3D_NewGame" index="2"]
+viewport_size = Vector2(1920, 1080)
+
+[node name="CollisionShape3D" parent="Viewport2Din3D_NewGame/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_jbj1t")
+
+[node name="Viewport2Din3D_Continue" parent="." unique_id=707710903 instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.24559379)
+visible = false
+script = ExtResource("8_eb6dy")
+scene = ExtResource("4_tbgi4")
+viewport_size = Vector2(1920, 1080)
+transparent = 1
+scene_properties_keys = PackedStringArray("continue_menu.gd")
+
+[node name="Viewport" parent="Viewport2Din3D_Continue" index="0"]
+size = Vector2i(1920, 1080)
+
+[node name="Screen" parent="Viewport2Din3D_Continue" index="1"]
+mesh = SubResource("QuadMesh_muem4")
+surface_material_override/0 = SubResource("StandardMaterial3D_0ld40")
+
+[node name="StaticBody3D" parent="Viewport2Din3D_Continue" index="2"]
+viewport_size = Vector2(1920, 1080)
+
+[node name="CollisionShape3D" parent="Viewport2Din3D_Continue/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_gqmmt")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=489514958]
+transform = Transform3D(11.292854, 0, 0, 0, 0.21912766, 0, 0, 0, 6.7799983, 0, -1.1950791, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=486921854]
+shape = SubResource("BoxShape3D_choun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D" unique_id=7104529]
+mesh = SubResource("BoxMesh_ya4ey")
+
+[node name="player_menu" parent="." unique_id=883393844 instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8054847, 2.0297537)
+
+[connection signal="new_game" from="Viewport2Din3D_NewGame" to="." method="_start_new_game"]
+[connection signal="continue_game" from="Viewport2Din3D_Continue" to="." method="_continue_game"]
+
+[editable path="Viewport2Din3D_Main"]
+[editable path="Viewport2Din3D_NewGame"]
+[editable path="Viewport2Din3D_Continue"]

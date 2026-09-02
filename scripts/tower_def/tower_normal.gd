@@ -3,6 +3,8 @@ extends Tower
 class_name TowerNormal
 
 const HOMING_PROJECTILE = preload("res://scenes/tower_def/homing_projectile.tscn")
+# dégats par défaut : 3.5
+# cooldown par défaut: 2.0
 
 func _custom_ready() -> void:
 	base_damage = 3.5

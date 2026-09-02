@@ -6,6 +6,8 @@ class_name Tower_Def
 var begin_id: int = 0
 @export var size: int = 7 # Default # A2: max 10
 @export var polyrinthe: Polyrinthe = Polyrinthe.new()
+
+# mob strength
 @export var difficulty: int = 0 # Default [-2; 2] # A2: min -2, max 2
 
 const ICE = preload("res://materials/ice.tres")
@@ -57,11 +59,11 @@ var is_wave_running: bool = false
 var time_between_waves: float = 20.0 # A2: 
 var wave_timer: float = 0.0
 var wave_configs: Array[Dictionary] = [ # A2: 
-	{"count": 10, "lvl": 1, "type": 1, "spawn_rate": 5},
-	{"count": 15, "lvl": 2, "type": 1, "spawn_rate": 5},
-	{"count": 25, "lvl": 3, "type": 1, "spawn_rate": 6},
-	{"count": 35, "lvl": 4, "type": 1, "spawn_rate": 8},
-	{"count": 50, "lvl": 5, "type": 1, "spawn_rate": 10}
+	{"count": 10, "lvl": 1},
+	{"count": 15, "lvl": 2},
+	{"count": 25, "lvl": 3},
+	{"count": 35, "lvl": 4},
+	{"count": 50, "lvl": 5}
 ]
 var max_waves: int = len(wave_configs)
 
@@ -131,9 +133,9 @@ func _ready() -> void:
 	#if wave_button:
 		#wave_button.start_wave_triggered.connect(_on_wave_button_triggered)
 	
-	#await get_tree().create_timer(10.0).timeout
-	#if wave_spawner:
-		#wave_spawner.start_wave(1, 10, false, 1, 5)
+	await get_tree().create_timer(10.0).timeout
+	if wave_spawner:
+		wave_spawner.start_wave(10, false, 1, 5)
 	
 	player.is_in_lobby = true
 
@@ -445,7 +447,6 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 	
 	# A4: wave button
 	
-	# TOOD: add to pdf
 	castle_position = maze.maze[maze.deepest_id].position + Vector3(0, path_height, 0)
 	
 	#for dead_end_id in dead_ends:
@@ -480,7 +481,7 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 			available_slots.append(tower_base)
 	
 	
-	_place_random_towers(available_slots, 5)
+	_place_random_towers(available_slots, 5) # TODO: remove in eleve
 	
 	# check player grapple to know if it's needed to spawn this upgrade
 	if player.grapple.upgrades[3] == 0:
@@ -564,7 +565,7 @@ func _process(delta: float) -> void:
 	
 	update_wave_ui()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	_handle_tower_placement()
 	
@@ -621,7 +622,7 @@ func _start_next_wave() -> void:
 	print("Launching wave ", current_wave + 1) # TODO : UI !
 	
 	if wave_spawner:
-		wave_spawner.start_wave(config["type"], config["count"], false, config["lvl"], config["spawn_rate"])
+		wave_spawner.start_wave(config["count"], false, config["lvl"], max_waves)
 	
 	wave_button.set_active_visuals(false)
 	player.is_in_lobby = false
@@ -882,8 +883,6 @@ func _apply_material_override(node: Node, mat: Material) -> void:
 	for child in node.get_children():
 		_apply_material_override(child, mat)
 
-# A2: 
-
-
-func _on_respawn_zone_area_entered(area: Area3D) -> void:
-	player.position = spawn_point # Replace with function body.
+# A2:
+func _on_respawn_zone_area_entered(_area: Area3D) -> void:
+	player.position = spawn_point

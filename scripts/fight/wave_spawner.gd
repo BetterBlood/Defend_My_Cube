@@ -12,6 +12,7 @@ var total_mobs_per_wave: Array[int] = []
 var mobs_processed: int = 0
 var current_wave: int = 0
 signal wave_updated(nbr_enemis: int, max_enemis: int, wave_number: int)
+@warning_ignore("unused_signal")
 signal wave_finished()
 
 func _ready() -> void:
@@ -29,14 +30,14 @@ func setup_end_portal(portal: Node3D) -> void:
 		if not portal_area.area_entered.is_connected(_on_end_portal_area_entered):
 			portal_area.area_entered.connect(_on_end_portal_area_entered)
 
-func start_wave(lvl: int, mob_count: int, aggro_player: bool = false, wave_nbr: int = 1, wave_max: int = 5) -> void:
+func start_wave(mob_count: int, aggro_player: bool = false, wave_nbr: int = 1, wave_max: int = 5) -> void:
 	total_mobs_per_wave.append(mob_count)
 	current_wave += 1
 	#mobs_processed = 0
 	
 	for i in range(mob_count):
 		var new_id = Enemy.get_next_id()
-		var human_seed = "wave_lvl_" + str(lvl) + "_mob_" + str(new_id)
+		var human_seed = "wave_lvl_" + str(wave_nbr) + "_mob_" + str(new_id)
 		rng.seed = hash(human_seed)
 		
 		var mob_type: int = rng.randi_range(0, len(possible_mobs) - 1)
@@ -47,7 +48,7 @@ func start_wave(lvl: int, mob_count: int, aggro_player: bool = false, wave_nbr: 
 		current_mobs.append(new_mob)
 		
 		new_mob.set_mob_data(human_seed, (wave_nbr/(wave_max as float))*5 - 3, i/(mob_count as float))
-		new_mob.lvl = lvl
+		new_mob.lvl = wave_nbr
 		add_child(new_mob)
 		
 		#new_mob.position = Vector3(randf_range(-1, 1) * 2.0, 0, randf_range(-1, 1) * 2.0)

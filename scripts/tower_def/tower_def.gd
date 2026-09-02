@@ -605,7 +605,7 @@ func _start_next_wave() -> void:
 	print("Launching wave ", current_wave + 1) # TODO : UI !
 	
 	if wave_spawner:
-		wave_spawner.start_wave(config["count"], false, config["lvl"], config["spawn_rate"])
+		wave_spawner.start_wave(config["count"], false, config["lvl"], max_waves)
 	
 	wave_button.set_active_visuals(false)
 	player.is_in_lobby = false

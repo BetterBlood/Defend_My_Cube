@@ -15,6 +15,12 @@ const ICE_GRAPPLE = 32
 const NORMAL_WALL_VALUE = NORMAL_GRAPPLE + ENV_VALUE
 const ICE_WALL_VALUE = ICE_GRAPPLE + ENV_VALUE
 
+const TOWER_NORMAL = preload("res://scenes/tower_def/tower_normal.tscn")
+const TOWER_FIRE = preload("res://scenes/tower_def/tower_fire.tscn")
+const TOWER_ELEC = preload("res://scenes/tower_def/tower_elec.tscn")
+const TOWER_PLANT = preload("res://scenes/tower_def/tower_plant.tscn")
+
+const TOWER_BASE = preload("res://scenes/tower_def/tower_base.tscn")
 @onready var player: Player = $Player
 @onready var navigation_region_3d: NavigationRegion3D = $NavigationRegion3D
 
@@ -102,7 +108,7 @@ func _ready() -> void:
 		else:
 			Enums.load_grid_damage_type(config, true)
 	
-	navigation_region_3d.add_child(polyrinthe)
+	navigation_region_3d.add_child(polyrinthe) # TODO add pdf
 	
 	_init_tower_holo_mat()
 	
@@ -176,7 +182,7 @@ func _initialise_world() -> void:
 	apply_collision_layer(polyrinthe, ICE) # static updates for wall grapple collisions 
 	
 	_apply_maze_modifications(polyrinthe)
-	
+	# TODO: add to pdf
 	navigation_region_3d.bake_navigation_mesh()
 
 func _generate_maze() -> void:
@@ -185,7 +191,7 @@ func _generate_maze() -> void:
 	
 	if not FileAccess.file_exists("user://" + player.get_player_name() + "/maze.save"):
 		push_warning("file:'" + player.get_player_name() + "/maze.save' not found, new generation created with size: " + str(size))
-		polyrinthe.algo = polyrinthe.GENERATION_ALGORITHME.DFS_LBL_ALT_6 # A2: change algo
+		polyrinthe.algo = polyrinthe.GENERATION_ALGORITHME.DFS_FLAT # A2: change algo
 		polyrinthe.begin_id = begin_id
 		polyrinthe.generate(size, "", [-1, -1, 1])
 		save_meta()
@@ -350,7 +356,7 @@ func _get_main_path(maze: Polyrinthe) -> Array[int]:
 		visited.append(curr_id)
 		path.append(curr_id)
 	
-	return [] # A3:
+	return path # A3:
 
 func _initialise_player():
 	if not FileAccess.file_exists("user://" + player.get_player_name() + "/meta.save"):
@@ -439,7 +445,8 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 	
 	# A4: wave button
 	
-	castle_position = maze.maze[path_to_castle.back()].position + Vector3(0, path_height, 0)
+	# TOOD: add to pdf
+	castle_position = maze.maze[maze.deepest_id].position + Vector3(0, path_height, 0)
 	
 	#for dead_end_id in dead_ends:
 		#var sphere_dead_end = SPHERE.instantiate()
@@ -448,20 +455,30 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 		#sphere_dead_end.position = maze.maze[dead_end_id].global_position
 	#
 	#for path_id in path_to_castle:
-		##print("path_id ", path_id)
+		#print("path_id ", path_id)
 		#var sphere_path = SPHERE.instantiate()
 		#add_child(sphere_path)
 		#sphere_path.get_child(0).mesh.material.albedo_color = Color(1, 0.8, 0.1, 1)
 		#sphere_path.position = maze.maze[path_id].global_position + Vector3(0, 5, 0)
-	
+	#
 	var available_slots: Array[TowerSlot] = [] # A3: 
+	var rooms: int = maze.cubeGraph.getNbrRoom()
 	
+	for tmp_id in range (rooms):
+		if Polyrinthe.is_id_on_first_floor(size,tmp_id) and tmp_id not in path_to_castle:
+			
 	# A3: 
-	#var sphere_path_dead_end = SPHERE.instantiate()
-	#add_child(sphere_path_dead_end)
-	#sphere_path_dead_end.get_child(0).mesh.material.albedo_color = Color(0, 0.8, 0.5, 1)
-	#sphere_path_dead_end.position = maze.maze[tmp_id].global_position + Vector3(0, 10, 0)
-	# A3: 
+			#var sphere_path_dead_end = SPHERE.instantiate()
+			#add_child(sphere_path_dead_end)
+			#sphere_path_dead_end.get_child(0).mesh.material.albedo_color = Color(0, 0.8, 0.5, 1)
+			#sphere_path_dead_end.position = maze.maze[tmp_id].global_position + Vector3(0, 10, 0)
+	## A3: 
+			var tower_base = TOWER_BASE.instantiate()
+			add_child(tower_base)
+			tower_base.scale = Vector3(maze.room_scale, maze.room_scale, maze.room_scale)*1.05
+			tower_base.position = maze.maze[tmp_id].global_position
+			available_slots.append(tower_base)
+	
 	
 	_place_random_towers(available_slots, 5)
 	
@@ -534,7 +551,8 @@ func _place_random_towers(slots: Array[TowerSlot], amount: int) -> void:
 	shuffled_slots.shuffle()
 	
 	for i in range(min(amount, shuffled_slots.size())):
-		pass # A3: 
+		var tower = TOWER_NORMAL.instantiate() as Tower
+		shuffled_slots[i].build_tower(tower)
 
 func _process(delta: float) -> void:
 	#_handle_tower_placement()
@@ -865,3 +883,7 @@ func _apply_material_override(node: Node, mat: Material) -> void:
 		_apply_material_override(child, mat)
 
 # A2: 
+
+
+func _on_respawn_zone_area_entered(area: Area3D) -> void:
+	player.position = spawn_point # Replace with function body.

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bccwp4iv2lt3p"]
 
 [ext_resource type="Script" uid="uid://bsgin71sb2ygk" path="res://scripts/tower_def/tower_def.gd" id="1_q7sil"]
+[ext_resource type="PackedScene" uid="uid://y1yw5naea0tu" path="res://scenes/characters/player.tscn" id="2_q7sil"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7sil"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,6 +15,13 @@ background_mode = 2
 sky = SubResource("Sky_bg3cy")
 tonemap_mode = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q7sil"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_q7sil"]
+agent_height = 2.0
+agent_radius = 3.0
+
 [node name="TowerDef" type="Node3D" unique_id=946838617]
 script = ExtResource("1_q7sil")
 
@@ -23,3 +31,19 @@ environment = SubResource("Environment_w05om")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1647661224]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1552602707 instance=ExtResource("2_q7sil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3266735, 1.9073486e-06, 45.755592)
+
+[node name="RespawnZone" type="Area3D" parent="." unique_id=1985614634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.82096, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnZone" unique_id=650389450]
+shape = SubResource("BoxShape3D_q7sil")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=358240468]
+navigation_mesh = SubResource("NavigationMesh_q7sil")
+
+[connection signal="area_entered" from="RespawnZone" to="." method="_on_respawn_zone_area_entered"]

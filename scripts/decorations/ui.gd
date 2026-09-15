@@ -5,6 +5,11 @@ const MAX_VISIBLE_SLOTS = 5
 var current_offset = 0
 const ICON = preload("uid://4kmk4f82xc2c")
 
+const NORMAL_ELEM = preload("uid://cf23ax3x8qv4n")
+const FIRE_ELEM = preload("uid://duyls2b50rywu")
+const PLANT_ELEM = preload("uid://vlxodpr56qgt")
+const ELEC_ELEM = preload("uid://evuh0mowkd7v")
+
 const TOWER_NORMAL: PackedScene = preload("res://scenes/tower_def/tower_normal.tscn")
 const TOWER_FIRE: PackedScene = preload("res://scenes/tower_def/tower_fire.tscn")
 const TOWER_ELEC: PackedScene = preload("res://scenes/tower_def/tower_elec.tscn")

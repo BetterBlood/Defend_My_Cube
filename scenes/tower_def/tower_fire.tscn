@@ -78,6 +78,9 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.2
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mhno6"]
+height = 4.10376
+
 [node name="Tower_Fire" type="Node3D" unique_id=1056222403]
 script = ExtResource("1_xdeaf")
 
@@ -143,3 +146,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 visible = false
 mesh = SubResource("CylinderMesh_nrgch")
 skeleton = NodePath("")
+
+[node name="GrappleReaction" type="Area3D" parent="." unique_id=1756468279]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrappleReaction" unique_id=1713218209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036743164, 0)
+shape = SubResource("CylinderShape3D_mhno6")

@@ -31,6 +31,7 @@ var effect_duration: float = 1.0
 var effect_area_range_transmission: float = 3.0
 
 func _ready() -> void:
+	
 	detection_area.set_collision_mask_value(1, false)
 	detection_area.set_collision_mask_value(3, true)
 	

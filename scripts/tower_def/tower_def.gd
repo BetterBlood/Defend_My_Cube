@@ -481,7 +481,7 @@ func _apply_maze_modifications(maze: Polyrinthe) -> void:
 			
 			available_slots.append(tower_base)
 	
-	_place_random_towers(available_slots, 5)
+	#_place_random_towers(available_slots, 5)
 	
 	# check player grapple to know if it's needed to spawn this upgrade
 	if player.grapple.upgrades[3] == 0:
@@ -522,7 +522,7 @@ func _build_elevated_path(maze: Polyrinthe) -> void:
 	var floor_thickness = 0.2 * maze.room_scale
 	
 	var path_material = StandardMaterial3D.new()
-	path_material.albedo_color = Color(0.8, 0.8, 0.8)
+	path_material.albedo_color = Color(0.377, 0.231, 0.121, 1.0)
 	
 	for room_id in path_to_castle:
 		var room_pos = maze.maze[room_id].position

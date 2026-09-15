@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cnbwwgrhxy85i"]
 
 [ext_resource type="Script" uid="uid://03llbkb1uns" path="res://scripts/decorations/continue_menu.gd" id="1_yafsn"]
-[ext_resource type="Texture2D" uid="uid://pneio6dylnwh" path="res://addons/polyrinthe/images/MazeInsideView_normalMode_scale2.PNG" id="2_vtfcp"]
+[ext_resource type="Texture2D" uid="uid://cmymsd41pepri" path="res://images/tower_def/tower_defense.png" id="2_yafsn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b1u5"]
-texture = ExtResource("2_vtfcp")
+texture = ExtResource("2_yafsn")
 modulate_color = Color(0.612036, 0.612036, 0.612036, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3wwc"]

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://yg54ndamnalc"]
 
 [ext_resource type="Script" uid="uid://bcx23wbio37st" path="res://scripts/decorations/main_menu.gd" id="1_3b1u5"]
-[ext_resource type="Texture2D" uid="uid://pneio6dylnwh" path="res://addons/polyrinthe/images/MazeInsideView_normalMode_scale2.PNG" id="1_nl711"]
+[ext_resource type="Texture2D" uid="uid://cmymsd41pepri" path="res://images/tower_def/tower_defense.png" id="2_3b1u5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b1u5"]
-texture = ExtResource("1_nl711")
+texture = ExtResource("2_3b1u5")
 modulate_color = Color(0.612036, 0.612036, 0.612036, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3wwc"]
@@ -86,7 +86,7 @@ offset_bottom = -161.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
-text = "Hook My Cube"
+text = "Tower Defense"
 horizontal_alignment = 1
 vertical_alignment = 1
 

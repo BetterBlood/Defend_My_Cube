@@ -3,12 +3,11 @@ extends Control
 @onready var hotbar_container = $HotBar
 const MAX_VISIBLE_SLOTS = 5
 var current_offset = 0
-const ICON = preload("uid://4kmk4f82xc2c")
 
-const NORMAL_ELEM = preload("uid://cf23ax3x8qv4n")
-const FIRE_ELEM = preload("uid://duyls2b50rywu")
-const PLANT_ELEM = preload("uid://vlxodpr56qgt")
-const ELEC_ELEM = preload("uid://evuh0mowkd7v")
+const NORMAL_ELEM = preload("res://images/tower_def/normal_elem.png")
+const FIRE_ELEM = preload("res://images/tower_def/element.png")
+const PLANT_ELEM = preload("res://images/tower_def/plant_elem.png")
+const ELEC_ELEM = preload("res://images/tower_def/elec_elem.png")
 
 const TOWER_NORMAL: PackedScene = preload("res://scenes/tower_def/tower_normal.tscn")
 const TOWER_FIRE: PackedScene = preload("res://scenes/tower_def/tower_fire.tscn")

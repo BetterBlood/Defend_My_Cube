@@ -45,8 +45,6 @@ func _ready() -> void:
 		
 	else:
 		print("OpenXR failed initialization, headset probably not connected.")
-		if $XROrigin3D:
-			$XROrigin3D.queue_free()
 	
 	main_menu = $MainMenu
 	new_game_menu = $NewGameMenu

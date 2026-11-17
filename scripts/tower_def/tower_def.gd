@@ -7,6 +7,7 @@ var begin_id: int = 0
 @export var size: int = 7 # Default
 var default_tags: Array[int] = [1]
 @export var polyrinthe: Polyrinthe = Polyrinthe.new()
+var grapple_upgrade_spawned: bool = false
 
 # mob strength
 @export var difficulty: int = 0 # Default [-2; 2]
@@ -564,6 +565,12 @@ func _process(delta: float) -> void:
 		wave_timer -= delta
 		if wave_timer <= 0.0:
 			_start_next_wave()
+	
+	if player.grapple.upgrades[3] == 0 and current_wave == 2 and not grapple_upgrade_spawned:
+		grapple_upgrade_spawned = true
+		var loot_orbe_ice_grapple = LOOT_ORBE_ICE_GRAPPLE.instantiate()
+		loot_orbe_ice_grapple.position = polyrinthe.maze[polyrinthe.begin_id].position + Vector3(0, polyrinthe.room_scale * polyrinthe.CubeCustom.distFromCenter + 2, 0)
+		add_child(loot_orbe_ice_grapple)
 	
 	update_wave_ui()
 

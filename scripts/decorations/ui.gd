@@ -172,7 +172,7 @@ func _create_slot_ui(data: Dictionary, is_selected: bool) -> Control:
 	
 	return panel
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if InputMap.has_action("tower_right") and Input.is_action_just_pressed("tower_right"):
 		change_selection(1)
 		get_viewport().set_input_as_handled()

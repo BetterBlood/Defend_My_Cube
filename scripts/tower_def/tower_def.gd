@@ -5,6 +5,7 @@ class_name Tower_Def
 # polyrinthe stuff
 var begin_id: int = 0
 @export var size: int = 7 # Default
+var default_tags: Array[int] = [1]
 @export var polyrinthe: Polyrinthe = Polyrinthe.new()
 
 # mob strength
@@ -20,7 +21,7 @@ const ICE_WALL_VALUE = ICE_GRAPPLE + ENV_VALUE
 @onready var player: Player = $Player
 @onready var navigation_region_3d: NavigationRegion3D = $NavigationRegion3D
 
-static var normal_wall_proportion: float = 0.2/3.0
+static var normal_wall_proportion: float = 2./3.
 
 const SPHERE = preload("res://addons/polyrinthe/sphere.tscn")
 const SPAWNER = preload("res://scenes/fight/spawner.tscn")
@@ -155,9 +156,7 @@ func _initialise_world() -> void:
 	
 	_generate_maze()
 	
-	polyrinthe.generate(size)
-	
-	polyrinthe.generate(polyrinthe.size, polyrinthe.get_seed(), [-1, -1])
+	polyrinthe.generate(polyrinthe.size, polyrinthe.get_seed(), [-1, -1, 1])
 	_save_maze()
 	
 	if not FileAccess.file_exists("user://" + player.get_player_name() + "/progression.save"):
@@ -220,12 +219,12 @@ func _generate_maze() -> void:
 			polyrinthe.reduce_wall = false
 		
 		difficulty = int(maze_data["difficulty"])
-		# ignore default tags
-		#for val in maze_data["default_tags"]:
-			#default_tags.append(int(val))
+		
+		for val in maze_data["default_tags"]:
+			default_tags.append(int(val))
 		polyrinthe.size = int(maze_data["size"])
 		polyrinthe.seed_human = maze_data["seed"]
-		#polyrinthe.generate(int(maze_data["size"]), maze_data["seed"], [-1, -1] + default_tags)
+		polyrinthe.generate(int(maze_data["size"]), maze_data["seed"], [-1, -1] + default_tags)
 		
 		# ignore updated tags
 		## used after polyrinthe.generate

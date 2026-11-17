@@ -19,8 +19,9 @@ var current_mobs: Array
 var spawned: bool = false
 
 var entered_player: Player = null
-@onready var player_ray_cast: RayCast3D = $PlayerRayCast
-@onready var wall_ray_cast: RayCast3D = $wallRayCast
+
+var player_ray_cast: RayCast3D
+var wall_ray_cast: RayCast3D
 
 const SPHERE = preload("res://addons/polyrinthe/sphere.tscn") # DEBUG
 # "updated_spawners":{"49":[138],"98":[252,253],"99":[66,67,68]}
@@ -41,6 +42,13 @@ var action_on_exited_area: Array[Callable] = [_nothing, _unregister_creature, _n
 var action_on_creature_taking_damage_at_close_range: Array[Callable] = [_nothing, _set_target_for_all, _nothing, _nothing]
 
 var action_on_damage_taken: Array[Callable] = [_set_target_for_all, _set_target_for_all, _set_target_for_all, _set_target_for_self]
+
+func _ready() -> void:
+	_custom_ready()
+
+func _custom_ready() -> void:
+	player_ray_cast = $PlayerRayCast
+	wall_ray_cast = $wallRayCast
 
 func _process(_delta: float) -> void:
 	if entered_player && not spawned:

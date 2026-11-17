@@ -15,10 +15,13 @@ signal wave_updated(nbr_enemis: int, max_enemis: int, wave_number: int)
 signal wave_finished()
 
 func _ready() -> void:
+	super()
+
+func _custom_ready() -> void:
 	possible_mobs = [
 		preload("res://scenes/tower_def/zombie_td.tscn"),
 	]
-
+	
 func setup_end_portal(portal: Node3D) -> void:
 	end_portal_ref = portal
 	

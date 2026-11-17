@@ -5,7 +5,7 @@ const MAX_VISIBLE_SLOTS = 5
 var current_offset = 0
 
 const NORMAL_ELEM = preload("res://images/tower_def/normal_elem.png")
-const FIRE_ELEM = preload("res://images/tower_def/element.png")
+const FIRE_ELEM = preload("res://images/tower_def/fire_elem.png")
 const PLANT_ELEM = preload("res://images/tower_def/plant_elem.png")
 const ELEC_ELEM = preload("res://images/tower_def/elec_elem.png")
 
